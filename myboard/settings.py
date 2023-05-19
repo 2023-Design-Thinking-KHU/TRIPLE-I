@@ -61,7 +61,7 @@ CORS_ORIGIN_ALLOW_ALL=True
 
 CORS_ALLOW_CREDENTIALS=True
 
-ROOT_URLCONF = 'myboard.urls'
+ROOT_URLCONF = 'triplei.urls'
 
 TEMPLATES = [
     {
@@ -79,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'myboard.wsgi.application'
+WSGI_APPLICATION = 'triplei.wsgi.application'
 
 
 # Database
