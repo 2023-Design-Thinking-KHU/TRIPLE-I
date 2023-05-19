@@ -1,1 +1,1 @@
-web:gunicorn triplei.wsgi
+web: gunicorn triplei.wsgi --log-file -
