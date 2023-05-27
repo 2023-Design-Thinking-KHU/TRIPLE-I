@@ -9,7 +9,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     username = models.CharField(max_length=128, default='default_username')
-    email = models.CharField(max_length=128)
+    email = models.CharField(max_length=128,default='default_email')
     propensity = models.CharField(max_length=128, blank=True)
 
 @receiver(post_save, sender=User)
