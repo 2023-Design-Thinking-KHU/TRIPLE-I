@@ -19,8 +19,8 @@ class LoginSerializer(serializers.Serializer):
      def validate(self,data):
           user=authenticate(**data)
           if user:
-               token=Token.objects.get(user=user)
-               return token 
+               token, _ = Token.objects.get_or_create(user=user)
+               return {'token': token.key, 'pk': user.pk}
           raise serializers.ValidationError(
                {"error":"Unable to log in with provided credentials."}
           )
