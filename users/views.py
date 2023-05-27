@@ -16,8 +16,11 @@ class LoginView(generics.GenericAPIView):
     def post(self,request):
         serializer=self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        token=serializer.validated_data 
-        return Response({"token":token.key},status=status.HTTP_200_OK)
+        validated_data = serializer.validated_data
+        token = validated_data.get('token') 
+        pk = validated_data.get('pk')
+        response_data = {"token": token, "pk": pk}
+        return Response(response_data, status=status.HTTP_200_OK)
     
 class ProfileView(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.all()
