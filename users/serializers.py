@@ -9,7 +9,7 @@ from .models import Profile
 class ProfileSerializer(serializers.ModelSerializer):
      class Meta:
           model=Profile
-          fields=("nickname","propensity","image")
+          fields=("username","email","propensity")
 
 
 class LoginSerializer(serializers.Serializer):
