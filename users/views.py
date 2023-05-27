@@ -19,7 +19,7 @@ class LoginView(generics.GenericAPIView):
         token=serializer.validated_data 
         return Response({"token":token.key},status=status.HTTP_200_OK)
     
-class ProfileView(generics.RetrieveAPIView):
+class ProfileView(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     
