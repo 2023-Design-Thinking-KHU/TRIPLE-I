@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.http import HttpResponse
 import dj_database_url
 import environ
+
+RESPONSE_MIME_TYPE = 'text/css'
 
 env=environ.Env()
 environ.Env.read_env()
