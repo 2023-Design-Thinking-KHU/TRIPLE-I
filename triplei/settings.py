@@ -13,7 +13,9 @@ import os
 from pathlib import Path
 import dj_database_url
 import environ
+import mimetypes
 
+mimetypes.add_type("text/css", ".css", True)
 env=environ.Env()
 environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,10 +35,10 @@ ALLOWED_HOSTS = [".herokuapp.com",'127.0.0.1']
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'FinanceFront', 'dist', 'assets'),
+    os.path.join(BASE_DIR, 'front/build/static'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    
+STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')  
 
 
 INSTALLED_APPS = [
@@ -52,7 +54,12 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+WHITENOISE_MIMETYPES = {
+    '.xsl': 'application/xml'
+}
+
 MIDDLEWARE = [
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -61,7 +68,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 CORS_ORIGIN_ALLOW_ALL=True
 
@@ -72,7 +78,7 @@ ROOT_URLCONF = 'triplei.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'FinanceFront', 'dist')],
+        'DIRS': [ os.path.join(BASE_DIR, 'front/build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
