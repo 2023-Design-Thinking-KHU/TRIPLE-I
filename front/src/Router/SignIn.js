@@ -106,7 +106,7 @@ export default function SignIn({onChangeState}) {
           }}
         >
           <Link to="/">
-            <img src="/Logo.PNG" alt="Cloud Icon" />
+            <img src={process.env.PUBLIC_URL + "./img/Logo.PNG"} alt="Cloud Icon" />
           </Link>
           <Box
             component="form"

@@ -177,7 +177,7 @@ export default function Explanation() {
           marginLeft: 890,
         }}
       >
-        <img src='/money.jpg' alt="Money" style={{ marginTop:50,width: "550px", height: "500px" }} />
+        <img src={process.env.PUBLIC_URL + './img/money.jpg'} alt="Money" style={{ marginTop:50,width: "550px", height: "500px" }} />
       </div>
     </div>
   );

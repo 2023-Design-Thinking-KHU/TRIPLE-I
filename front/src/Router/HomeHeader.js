@@ -75,7 +75,7 @@ console.log(pk);
         >
           <Link to="/" sx={{ textDecoration: "none", color: "black" }}>
             <img
-              src="/Logo.PNG"
+              src={process.env.PUBLIC_URL + "./img/Logo.PNG"}
               style={{
                 width: "200px",
                 height: "140px",
