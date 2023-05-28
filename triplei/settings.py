@@ -42,12 +42,13 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'dist'),
+            os.path.join(BASE_DIR, 'templates'),  # 기존 디렉토리 유지
+            os.path.join(BASE_DIR, 'dist'),  # dist 폴더 추가
         ],
         # ...
     },
 ]
-# Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -141,7 +142,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 
 
 MEDIA_URL='/media/'
