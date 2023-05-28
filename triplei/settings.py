@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-
 import dj_database_url
 import environ
 
@@ -33,8 +32,8 @@ DEBUG = True
 ALLOWED_HOSTS = [".herokuapp.com",'127.0.0.1']
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'dist'),
+SSTATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    
@@ -44,7 +43,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),  # 기존 디렉토리 유지
-            os.path.join(BASE_DIR, 'dist'),  # dist 폴더 추가
         ],
         # ...
     },
