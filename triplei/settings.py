@@ -32,22 +32,11 @@ DEBUG = True
 ALLOWED_HOSTS = [".herokuapp.com",'127.0.0.1']
 
 
-SSTATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static','dist'),  
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'FinanceFront', 'dist', 'assets'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),  # 기존 디렉토리 유지
-            os.path.join(BASE_DIR,'static','dist'),
-        ],
-        # ...
-    },
-]
 
 
 INSTALLED_APPS = [
@@ -80,7 +69,21 @@ CORS_ALLOW_CREDENTIALS=True
 
 ROOT_URLCONF = 'triplei.urls'
 
-
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [ os.path.join(BASE_DIR, 'FinanceFront', 'dist')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 WSGI_APPLICATION = 'triplei.wsgi.application'
 
