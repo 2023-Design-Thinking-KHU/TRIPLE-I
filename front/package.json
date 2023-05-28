@@ -40,10 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": {
-    "/api": {
-      "target": "https://triplei.herokuapp.com",
-      "changeOrigin": true
-    }
-  }
+  "proxy": "https://triplei.herokuapp.com"
 }

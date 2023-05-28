@@ -13,9 +13,9 @@ import os
 from pathlib import Path
 import dj_database_url
 import environ
-import mimetypes
 
-mimetypes.add_type("text/css", ".css", True)
+
+
 env=environ.Env()
 environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

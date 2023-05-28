@@ -75,7 +75,7 @@ console.log(pk);
         >
           <Link to="/" sx={{ textDecoration: "none", color: "black" }}>
             <img
-              src="/images/Logo.PNG"
+              src="/Logo.PNG"
               style={{
                 width: "200px",
                 height: "140px",

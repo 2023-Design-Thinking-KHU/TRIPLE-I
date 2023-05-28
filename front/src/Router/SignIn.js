@@ -106,7 +106,7 @@ export default function SignIn({onChangeState}) {
           }}
         >
           <Link to="/">
-            <img src="/images/Logo.PNG" alt="Cloud Icon" />
+            <img src="/Logo.PNG" alt="Cloud Icon" />
           </Link>
           <Box
             component="form"

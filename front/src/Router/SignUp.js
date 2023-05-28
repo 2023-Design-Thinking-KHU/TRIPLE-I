@@ -70,7 +70,7 @@ export default function SignUp() {
         >
           <Link to="/">
             <Button>
-          <img src="/images/Logo.PNG"/>
+          <img src="/Logo.PNG"/>
           </Button>
           </Link>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
