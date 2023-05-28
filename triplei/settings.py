@@ -43,6 +43,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),  # 기존 디렉토리 유지
+            os.path.join(BASE_DIR,'static','dist'),
         ],
         # ...
     },
