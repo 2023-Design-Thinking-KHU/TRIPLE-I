@@ -78,7 +78,6 @@ ROOT_URLCONF = 'triplei.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['build'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
