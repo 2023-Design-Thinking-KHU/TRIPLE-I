@@ -4,6 +4,7 @@ import { Link } from "react-router-dom/dist";
 import { useState, useEffect } from "react";
 import Profile from "../component/Profile";
 import { useLocation } from "react-router-dom";
+import { ElevatorSharp } from "@mui/icons-material";
 export default function HomeHeader({ style }) {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
@@ -13,30 +14,33 @@ export default function HomeHeader({ style }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [propensity,setpropensity]=useState("");
-console.log(pk);
-  const fetchProfile = async () => {
-    try {
-      const response = await fetch(
-        `https://triplei.herokuapp.com/users/profile/${pk}`,
+  const fetchProfile = () => {
+   fetch(
+        `http://triplei.herokuapp.com/users/profile/${pk}`,
         {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
+          method: 'GET',
+          headers:{
+            'Content-Type':'application/json',
+          }
         }
-      );
-
-      if (response.ok) {
-        const profileData = await response.json();
-        setUsername(profileData.username);
-        setEmail(profileData.email);
-      } else {
-        throw new Error("Error fetching profile");
-      }
-    } catch (error) {
-      console.error("Error fetching profile:", error);
-      // Handle error fetching profile
-    }
+      ).then(response=>{
+        if(response.ok){
+          return response.json();
+        }else{
+          throw new Error("프로필 불러오기 실패");
+        }
+      })
+      .then(data=>{
+        setUsername(data.username);
+        setEmail(data.email);
+        setpropensity(data.propensity);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   };
+  
+  
   const handleLogout = () => {
     // Perform logout logic
     setIsLoggedIn(false);

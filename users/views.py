@@ -22,7 +22,22 @@ class LoginView(generics.GenericAPIView):
         response_data = {"token": token, "pk": pk}
         return Response(response_data, status=status.HTTP_200_OK)
     
-class ProfileView(generics.RetrieveUpdateAPIView):
+class ProfileView(generics.GenericAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+
+    def get(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
     

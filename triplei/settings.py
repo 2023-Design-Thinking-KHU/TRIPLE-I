@@ -55,9 +55,7 @@ INSTALLED_APPS = [
     'whitenoise',
 ]
 
-WHITENOISE_MIMETYPES = {
-    '.xsl': 'application/xml'
-}
+
 
 MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",

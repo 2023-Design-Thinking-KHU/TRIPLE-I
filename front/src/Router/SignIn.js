@@ -73,6 +73,7 @@ export default function SignIn({onChangeState}) {
     })
       .then(response => {
         if (response.ok) {
+          console.log(response);
           return response.json(); // Parse response body as JSON
         } else {
           throw new Error("로그인에 실패했습니다.");
