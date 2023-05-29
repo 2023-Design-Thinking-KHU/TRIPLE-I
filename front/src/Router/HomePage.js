@@ -14,7 +14,7 @@ export default function HomePage() {
       </style>
       <div
         style={{
-          backgroundImage: `url(${process.env.PUBLIC_URL}/img/Home.jpg)`, 
+          backgroundImage: `url(${process.env.PUBLIC_URL}/Home.jpg)`, 
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
