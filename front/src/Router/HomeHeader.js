@@ -16,7 +16,7 @@ export default function HomeHeader({ style }) {
   const [propensity,setpropensity]=useState("");
   const fetchProfile = () => {
    fetch(
-        `http://triplei.herokuapp.com/users/profile/${pk}`,
+        `https://triplei.herokuapp.com/users/profile/${pk}`,
         {
           method: 'GET',
           headers:{
