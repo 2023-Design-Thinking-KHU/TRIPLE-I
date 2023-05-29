@@ -35,7 +35,7 @@ ALLOWED_HOSTS = [".herokuapp.com",'127.0.0.1']
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'front/build/static'),
+    os.path.join(BASE_DIR, 'build/static'),
 ]
 
 STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')  
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'users',
     'corsheaders',
+    'whitenoise',
 ]
 
 WHITENOISE_MIMETYPES = {
@@ -78,7 +79,7 @@ ROOT_URLCONF = 'triplei.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'front/build')],
+        'DIRS': [os.path.join(BASE_DIR,'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
