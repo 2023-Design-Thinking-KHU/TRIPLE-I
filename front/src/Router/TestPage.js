@@ -128,10 +128,10 @@ export default function TestPage() {
           top: "145%",
           alignItems: "center",
           display: "flex",
-          marginLeft: 700,
+          marginLeft: 650,
         }}
       >
-        <Button sx={{fontSize:30}}variant="contained">결과보기</Button> 
+        <Button sx={{fontSize:30}}variant="contained">결과저장</Button> 
         </div>
     </div>
   );

@@ -13,16 +13,18 @@ export default function HomeList() {
     return (
       <Box
         sx={{
+          marginRight:5,
+          marginTop:10,
           width: 600,
           bgcolor: "background.paper",
           backgroundColor: "transparent",
-          border: "1px solid black",
-          borderRadius: "5px",
+          border: "3px solid black",
+          borderRadius: "10px",
         }}
       >
         <List>
-          <Link to="/Test">
-          <ListItem disablePadding sx={{ borderBottom: "1px solid black", py: 4 }}>
+          <Link to="/Test"  style={{ textDecoration: "none" }}>
+          <ListItem disablePadding sx={{ borderBottom: "3px solid black", py: 4 }}>
             <ListItemButton>
               <ListItemText
                 primary={
@@ -42,8 +44,8 @@ export default function HomeList() {
             </ListItemButton>
           </ListItem>
           </Link>
-          <Link to="/Main">
-          <ListItem disablePadding sx={{ borderBottom: "1px solid black", py: 4 }}>
+          <Link to="/Main"  style={{ textDecoration: "none" }}>
+          <ListItem disablePadding sx={{ borderBottom: "3px solid black", py: 4 }}>
             <ListItemButton>
               <ListItemText
                 primary={
@@ -63,7 +65,7 @@ export default function HomeList() {
             </ListItemButton>
           </ListItem>
           </Link>
-          <Link to='Explanation'>
+          <Link to='Explanation' style={{ textDecoration: "none" }}>
           <ListItem disablePadding sx={{ py: 4 }}>
             <ListItemButton>
               <ListItemText

@@ -67,7 +67,7 @@ export default function Portfolio() {
         component="form"
         sx={{
           "& > :not(style)": { m: 5 },
-          marginTop: 29,
+          marginTop: 25,
           marginLeft: 35,
         }}
         noValidate
@@ -91,7 +91,7 @@ export default function Portfolio() {
         style={{
           fontSize: 30,
           position: "absolute",
-          top: "90%",
+          top: "100%",
           alignItems: "center",
           display: "flex",
           marginLeft: 670,
