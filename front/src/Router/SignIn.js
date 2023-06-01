@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import {  useNavigate } from 'react-router-dom';
-
+import Logo from "../images/Logo.PNG"
 function Copyright(props) {
   return (
     <Typography
@@ -107,7 +107,7 @@ export default function SignIn({onChangeState}) {
           }}
         >
           <Link to="/">
-            <img src={`${process.env.PUBLIC_URL}/Logo.PNG`} alt="Cloud Icon" />
+            <img src={Logo} alt="Cloud Icon" />
           </Link>
           <Box
             component="form"

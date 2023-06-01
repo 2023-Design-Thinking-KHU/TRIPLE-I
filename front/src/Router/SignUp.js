@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import {  useNavigate } from 'react-router-dom';
+import Logo from "../images/Logo.PNG"
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ export default function SignUp() {
         >
           <Link to="/">
             <Button>
-            <img src={`${process.env.PUBLIC_URL}/Logo.PNG`} />
+            <img src={Logo} />
           </Button>
           </Link>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>

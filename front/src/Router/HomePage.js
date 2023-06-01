@@ -1,5 +1,6 @@
 import HomeHeader from "./HomeHeader";
 import HomeList from "./HomeList";
+import Home from "../images/Home.jpg";
 
 export default function HomePage() {
   return (
@@ -14,7 +15,7 @@ export default function HomePage() {
       </style>
       <div
         style={{
-          backgroundImage: `url(${process.env.PUBLIC_URL}/Home.jpg)`, 
+          backgroundImage: `url(${Home})`, 
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

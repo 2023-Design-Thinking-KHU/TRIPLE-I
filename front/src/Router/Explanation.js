@@ -5,7 +5,7 @@ import { Divider, Typography } from "@mui/material";
 
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
-
+import Money from "../images/money.jpg"
 export default function Explanation() {
   const [selectedIndex, setSelectedIndex] = React.useState(null);
 
@@ -218,7 +218,7 @@ export default function Explanation() {
         }}
       >
         <img
-          src={`${process.env.PUBLIC_URL}/money.jpg`}
+          src={Money}
           alt="Money"
           style={{ marginTop: 50, width: "550px", height: "500px" }}
         />

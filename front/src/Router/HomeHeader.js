@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import Profile from "../component/Profile";
 import { useLocation } from "react-router-dom";
 import { ElevatorSharp } from "@mui/icons-material";
+import Logo from "../images/Logo.PNG"
+
 export default function HomeHeader({ style }) {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
@@ -79,7 +81,7 @@ export default function HomeHeader({ style }) {
         >
           <Link to="/" sx={{ textDecoration: "none", color: "black" }}>
             <img
-              src={`${process.env.PUBLIC_URL}/Logo.PNG`}
+              src={Logo}
               style={{
                 width: "200px",
                 height: "140px",
