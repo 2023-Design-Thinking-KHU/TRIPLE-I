@@ -1,15 +1,13 @@
 import * as React from "react";
 import HomeHeader from "./HomeHeader";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import { Divider,Typography } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 
 export default function Explanation() {
-    
   const [selectedIndex, setSelectedIndex] = React.useState(null);
-
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -85,7 +83,14 @@ export default function Explanation() {
             selected={selectedIndex === 0}
             onClick={(event) => handleListItemClick(event, 0)}
           >
-            <Typography style={{ fontSize: 30 , textShadow: '10px 5px 4px rgba(0, 0, 0, 0.3)'}}>예금</Typography>
+            <Typography
+              style={{
+                fontSize: 30,
+                textShadow: "10px 5px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              예금
+            </Typography>
           </ListItemButton>
           <Divider
             sx={{
@@ -101,7 +106,14 @@ export default function Explanation() {
             selected={selectedIndex === 1}
             onClick={(event) => handleListItemClick(event, 1)}
           >
-            <Typography style={{ fontSize: 30, textShadow: '10px 5px 4px rgba(0, 0, 0, 0.3)' }}>적금</Typography>
+            <Typography
+              style={{
+                fontSize: 30,
+                textShadow: "10px 5px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              적금
+            </Typography>
           </ListItemButton>
           <Divider
             sx={{
@@ -117,7 +129,14 @@ export default function Explanation() {
             selected={selectedIndex === 2}
             onClick={(event) => handleListItemClick(event, 2)}
           >
-             <Typography style={{ fontSize: 30, textShadow: '10px 5px 4px rgba(0, 0, 0, 0.3)' }}>주식</Typography>
+            <Typography
+              style={{
+                fontSize: 30,
+                textShadow: "10px 5px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              주식
+            </Typography>
           </ListItemButton>
           <Divider
             sx={{
@@ -133,7 +152,14 @@ export default function Explanation() {
             selected={selectedIndex === 3}
             onClick={(event) => handleListItemClick(event, 3)}
           >
-                <Typography style={{ fontSize: 30, textShadow: '10px 5px 4px rgba(0, 0, 0, 0.3)' }}>코인</Typography>
+            <Typography
+              style={{
+                fontSize: 30,
+                textShadow: "10px 5px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              코인
+            </Typography>
           </ListItemButton>
           <Divider
             sx={{
@@ -149,7 +175,14 @@ export default function Explanation() {
             selected={selectedIndex === 4}
             onClick={(event) => handleListItemClick(event, 4)}
           >
-               <Typography style={{ fontSize: 30, textShadow: '10px 5px 4px rgba(0, 0, 0, 0.3)' }}>해외선물</Typography>
+            <Typography
+              style={{
+                fontSize: 30,
+                textShadow: "10px 5px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              해외선물
+            </Typography>
           </ListItemButton>
           <Divider
             sx={{
@@ -165,7 +198,14 @@ export default function Explanation() {
             selected={selectedIndex === 5}
             onClick={(event) => handleListItemClick(event, 5)}
           >
-                 <Typography style={{ fontSize: 30, textShadow: '10px 5px 4px rgba(0, 0, 0, 0.3)' }}>펀드</Typography>
+            <Typography
+              style={{
+                fontSize: 30,
+                textShadow: "10px 5px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              펀드
+            </Typography>
           </ListItemButton>
         </List>
       </div>
@@ -177,7 +217,11 @@ export default function Explanation() {
           marginLeft: 890,
         }}
       >
-        <img src={process.env.PUBLIC_URL + './img/money.jpg'} alt="Money" style={{ marginTop:50,width: "550px", height: "500px" }} />
+        <img
+          src={`${process.env.PUBLIC_URL}/money.jpg`}
+          alt="Money"
+          style={{ marginTop: 50, width: "550px", height: "500px" }}
+        />
       </div>
     </div>
   );

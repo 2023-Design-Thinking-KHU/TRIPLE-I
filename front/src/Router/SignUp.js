@@ -25,7 +25,7 @@ export default function SignUp() {
 
     const formData = {
       username: data.get("username"),
-      password: data.get('password'),
+      password: data.get('password'), 
       password2: data.get('password'),
       email: data.get('email'),
     };
@@ -70,7 +70,7 @@ export default function SignUp() {
         >
           <Link to="/">
             <Button>
-            <img src={process.env.PUBLIC_URL + './Logo.PNG'} />
+            <img src={`${process.env.PUBLIC_URL}/Logo.PNG`} />
           </Button>
           </Link>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>

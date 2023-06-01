@@ -79,7 +79,7 @@ export default function HomeHeader({ style }) {
         >
           <Link to="/" sx={{ textDecoration: "none", color: "black" }}>
             <img
-              src={process.env.PUBLIC_URL + "./Logo.PNG"}
+              src={`${process.env.PUBLIC_URL}/Logo.PNG`}
               style={{
                 width: "200px",
                 height: "140px",
