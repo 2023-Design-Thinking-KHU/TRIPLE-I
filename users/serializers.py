@@ -9,7 +9,7 @@ from .models import Profile
 class ProfileSerializer(serializers.ModelSerializer):
      class Meta:
           model=Profile
-          fields=("nickname","propensity","image")
+          fields=("username","email","propensity")
 
 
 class LoginSerializer(serializers.Serializer):
@@ -19,8 +19,8 @@ class LoginSerializer(serializers.Serializer):
      def validate(self,data):
           user=authenticate(**data)
           if user:
-               token=Token.objects.get(user=user)
-               return token 
+               token, _ = Token.objects.get_or_create(user=user)
+               return {'token': token.key, 'pk': user.pk}
           raise serializers.ValidationError(
                {"error":"Unable to log in with provided credentials."}
           )
