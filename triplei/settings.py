@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'users',
+    'portfolio',
     'corsheaders',
     'whitenoise',
 ]
@@ -99,7 +100,7 @@ WSGI_APPLICATION = 'triplei.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://toxjnstzwpgsxr:75f1fb84ab217bed240d56e4568c83410b45cc21a2237388b6426a04bc8faa93@ec2-3-234-204-26.compute-1.amazonaws.com:5432/dc1p98l1snfjdi')
+    'default': dj_database_url.config(default='postgres://ntowdgiutlmqrb:20aac972cd03c64ee7eeb60ecf6b4ce308c9cef58665214323b788fceb0ef69e@ec2-18-211-172-50.compute-1.amazonaws.com:5432/d48hl51qe8e007')
 }
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config()
