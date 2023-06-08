@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import {  useNavigate } from 'react-router-dom';
 import Logo from "../images/Logo.PNG"
+import { useDispatch,useSelector } from "react-redux";
+
 function Copyright(props) {
   return (
     <Typography
@@ -47,6 +49,7 @@ export default function SignIn({onChangeState}) {
   const [id, setId] = useState("");
   const [password, setPw] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch=useDispatch();
   const navigate = useNavigate();
   const handleInputId = (e) => {
     setId(e.target.value);
@@ -73,7 +76,6 @@ export default function SignIn({onChangeState}) {
     })
       .then(response => {
         if (response.ok) {
-          console.log(response);
           return response.json(); // Parse response body as JSON
         } else {
           throw new Error("로그인에 실패했습니다.");
@@ -81,10 +83,8 @@ export default function SignIn({onChangeState}) {
       })
       .then(data => {
         // Access the 'pk' value from the response data
-        const pk = data.pk;
-        setIsLoggedIn(true);
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('pk', pk);
+        dispatch({ type:'UPDATE_login',payload:true});
+        dispatch({ type: 'UPDATE_PK', payload: data.pk });
         navigate("/");
       })
       .catch(error => {

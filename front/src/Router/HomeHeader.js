@@ -6,16 +6,18 @@ import Profile from "../component/Profile";
 import { useLocation } from "react-router-dom";
 import { ElevatorSharp } from "@mui/icons-material";
 import Logo from "../images/Logo.PNG"
+import { useDispatch,useSelector } from "react-redux";
 
-export default function HomeHeader({ style }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("isLoggedIn") === "true"
-  );
-  const pk = localStorage.getItem('pk');
-  const location = useLocation();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+export default function HomeHeader({}) {
   const [propensity,setpropensity]=useState("");
+
+  const username=useSelector(state => state.username);
+  const email=useSelector(state => state.email);
+  const isLoggedIn=useSelector(state => state.isLoggedIn);
+  const pk = useSelector(state => state.pk);
+  const dispatch = useDispatch();
+
+
   const fetchProfile = () => {
    fetch(
         `https://triplei.herokuapp.com/users/profile/${pk}`,
@@ -33,8 +35,8 @@ export default function HomeHeader({ style }) {
         }
       })
       .then(data=>{
-        setUsername(data.username);
-        setEmail(data.email);
+        dispatch({ type:'UPDATE_username',payload:data.username});
+        dispatch({ type:'UPDATE_email',payload:data.email});
         setpropensity(data.propensity);
       })
       .catch(error => {
@@ -44,8 +46,7 @@ export default function HomeHeader({ style }) {
   
   
   const handleLogout = () => {
-    // Perform logout logic
-    setIsLoggedIn(false);
+    dispatch({ type:'UPDATE_login',payload:false});
   };
 
   useEffect(() => {

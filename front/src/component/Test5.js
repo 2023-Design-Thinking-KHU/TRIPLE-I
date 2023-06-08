@@ -3,9 +3,29 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
+import { useState } from "react";
 
+export default function Radio5({ onChange }) {
+  const [selectedValue, setSelectedValue] = useState("");
+  const handleRadioChange = (event) => {
+    setSelectedValue(event.target.value);
+    if (event.target.value === "안정형") {
+      onChange(0.2);
+    }
+    if (event.target.value === "안정추구형") {
+      onChange(0.4);
+    }
+    if (event.target.value === "위험중립형") {
+      onChange(0.6);
+    }
+    if (event.target.value === "적극투자형") {
+      onChange(0.8);
+    }
+    if (event.target.value === "공격투자형") {
+      onChange(1);
+    }
 
-export default function Radio5() {
+  };
   return (
     <div
       style={{
@@ -20,8 +40,9 @@ export default function Radio5() {
         <RadioGroup
           aria-labelledby="demo-row-radio-buttons-group-label"
           name="row-radio-buttons-group"
+          onChange={handleRadioChange}
         >
-          <FormControlLabel value="안정형" control={<Radio />} label="안정형" />
+          <FormControlLabel value="안정형" control={<Radio/>} label="안정형" />
           <span style={{ fontSize: "15px" }}>
             예금 또는 적금 수준의 수익률을 기대하며, 투자원금에 손실이 발생하는
             것을 원하지 않음

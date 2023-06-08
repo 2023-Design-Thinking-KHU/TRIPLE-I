@@ -4,27 +4,50 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
-import AddIcon from "@mui/icons-material/Add";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import LoginModal from "../component/loginmodal";
+import { useState } from "react";
 export default function HomeList() {
-    return (
-      <Box
-        sx={{
-          marginRight:5,
-          marginTop:10,
-          width: 600,
-          bgcolor: "background.paper",
-          backgroundColor: "transparent",
-          border: "3px solid black",
-          borderRadius: "10px",
-        }}
-      >
-        <List>
-          <Link to="/Test"  style={{ textDecoration: "none" }}>
-          <ListItem disablePadding sx={{ borderBottom: "3px solid black", py: 4 }}>
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+  const handleLinkClick = () => {
+    if (!isLoggedIn) {
+      setLoginModalOpen(true);
+    }
+  };
+
+  const closeModal = () => {
+    setLoginModalOpen(false);
+  };
+  return (
+    <Box
+      sx={{
+        marginRight: 5,
+        marginTop: 10,
+        width: 600,
+        bgcolor: "background.paper",
+        backgroundColor: "transparent",
+        border: "3px solid black",
+        borderRadius: "10px",
+      }}
+    >
+      <List>
+      <Link
+          to="/Test"
+          style={{ textDecoration: "none" }}
+          onClick={(event) => {
+            if (!isLoggedIn) {
+              event.preventDefault();
+              handleLinkClick();
+            }
+          }}
+        >
+          <ListItem
+            disablePadding
+            sx={{ borderBottom: "3px solid black", py: 4 }}
+          >
             <ListItemButton>
               <ListItemText
                 primary={
@@ -43,9 +66,21 @@ export default function HomeList() {
               <AddCircleIcon sx={{ color: "black", fontSize: 40 }} />
             </ListItemButton>
           </ListItem>
-          </Link>
-          <Link to="/Main"  style={{ textDecoration: "none" }}>
-          <ListItem disablePadding sx={{ borderBottom: "3px solid black", py: 4 }}>
+        </Link>
+        <Link
+          to="/Main"
+          style={{ textDecoration: "none" }}
+          onClick={(event) => {
+            if (!isLoggedIn) {
+              event.preventDefault();
+              handleLinkClick();
+            }
+          }}
+        >
+          <ListItem
+            disablePadding
+            sx={{ borderBottom: "3px solid black", py: 4 }}
+          >
             <ListItemButton>
               <ListItemText
                 primary={
@@ -64,8 +99,17 @@ export default function HomeList() {
               <AddCircleIcon sx={{ color: "black", fontSize: 40 }} />
             </ListItemButton>
           </ListItem>
-          </Link>
-          <Link to='Explanation' style={{ textDecoration: "none" }}>
+        </Link>
+        <Link
+          to="Explanation"
+          style={{ textDecoration: "none" }}
+          onClick={(event) => {
+            if (!isLoggedIn) {
+              event.preventDefault();
+              handleLinkClick();
+            }
+          }}
+        >
           <ListItem disablePadding sx={{ py: 4 }}>
             <ListItemButton>
               <ListItemText
@@ -85,9 +129,9 @@ export default function HomeList() {
               <AddCircleIcon sx={{ color: "black", fontSize: 40 }} />
             </ListItemButton>
           </ListItem>
-          </Link>
-        </List>
-      </Box>
-    );
-  }
-  
+        </Link>
+      </List>
+      {isLoginModalOpen && <LoginModal closeModal={closeModal} />}
+    </Box>
+  );
+}

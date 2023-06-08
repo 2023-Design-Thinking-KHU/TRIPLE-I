@@ -13,12 +13,17 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Logo from "../images/Logo.PNG"
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [open, setOpen] = useState(false);
   
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,22 +45,23 @@ export default function SignUp() {
     })
       .then(response => {
         if (response.ok) {
-          setIsLoggedIn(true); // 로그인 상태를 변경
-          localStorage.setItem('isLoggedIn', 'true'); // 로그인 상태를 로컬 스토리지에 저장
           return response.json(); // Parse response body as JSON
         } else {
           throw new Error("회원 가입에 실패했습니다");
         }
       })
       .then(data => {
-        navigate("/", { state: { pk: data.pk } });
+        setOpen(true);
       })
       .catch(error => {
         // 오류 처리
         console.error('Error:', error);
       });
   };
-  
+  const handleClose = () => {
+    setOpen(false); // 모달 창을 닫기 위해 상태 변수를 false로 설정
+    navigate("/"); // 확인을 누르면 메인화면으로 이동
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -143,9 +149,26 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
+        <Dialog
+          open={open} // 모달 창의 열림/닫힘 상태를 설정
+          onClose={handleClose} // 모달 창을 닫을 때 호출되는 함수
+        >
+          <DialogTitle>회원가입 성공</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              회원가입이 성공적으로 완료되었습니다.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} autoFocus>
+              확인
+            </Button>
+          </DialogActions>
+        </Dialog>
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
+    
   );
 }
 
