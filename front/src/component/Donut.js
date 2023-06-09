@@ -13,7 +13,6 @@ const Piechart = () => {
       filteredWeights[key] = value;
     }
   }
-  console.log(filteredWeights);
   const backgroundColor = [
     '#f76b8a',
     '#13D8F6',

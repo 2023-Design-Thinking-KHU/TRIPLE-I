@@ -15,12 +15,19 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation } from "react-router-dom";
 import { Button} from '@mui/material';
 import { useState,useEffect } from 'react';
+import { useDispatch,useSelector } from "react-redux";
 
 export default function Profile({email,onChangeState}) {
   const location = useLocation();
   const [islogin, setislogin] = useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null); 
   const open = Boolean(anchorEl);
+  const username=useSelector(state => state.username);
+
+  const weight=useSelector(state => state.weight);
+  const volatility=useSelector(state => state.volatility);
+  const expectedReturn=useSelector(state => state.expectedReturn);
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -44,6 +51,31 @@ export default function Profile({email,onChangeState}) {
       window.location.reload();
     }
   }, [islogin]);
+
+  const handleDownload = () => {
+    if (weight) {
+      const downloadURL = 'https://triplei.herokuapp.com/media/weights.csv'; // Update with your actual URL
+      fetch(downloadURL)
+        .then((response) => response.blob())
+        .then((blob) => {
+          // Create a temporary URL for the downloaded file
+          const url = URL.createObjectURL(blob);
+          // Create a link element
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'weights.csv'; // Set the filename for the downloaded file
+          // Programmatically click the link to start the download
+          link.click();
+          // Clean up the temporary URL and link element
+          URL.revokeObjectURL(url);
+          link.remove();
+        })
+        .catch((error) => {
+          console.error('Error downloading file:', error);
+        });
+    }
+  };
+  
  
   return (
     <React.Fragment>
@@ -103,9 +135,13 @@ export default function Profile({email,onChangeState}) {
           {email}
         </MenuItem>
         <Divider />
-         <h4 style={{marginRight:12,marginLeft:10}}>투자성향:</h4>
-         <h4 style={{marginRight:12,textAlign:'center'}}>테스트 하세요</h4>
-        <MenuItem onClick={handleClose}>
+         <h4 style={{marginRight:20,textAlign:'center'}}>투자성향</h4>
+         <h4 style={{marginRight:12,textAlign:'center',opacity: 0.7}}>테스트 하세요</h4>
+         <Divider />
+         <h4 style={{marginRight:20,textAlign:'center'}}>포트폴리오 결과</h4>
+         <h4 style={{marginRight:12,textAlign:'center',opacity: 0.7}}>테스트 하세요</h4>
+         <Button sx={{marginTop:5,marginLeft:8.5}} variant="contained" onClick={handleDownload}>결과 파일</Button>
+        <MenuItem sx={{marginTop:5}} onClick={handleClose}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon >

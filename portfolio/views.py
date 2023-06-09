@@ -14,6 +14,9 @@ from pypfopt import expected_returns
 from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
 from rest_framework import status
 from rest_framework import viewsets
+from django.http import FileResponse
+from django.conf import settings
+import shutil
 
 
 class MyStrategy(bt.Strategy):
@@ -73,7 +76,8 @@ class PortfolioViewSet(viewsets.ModelViewSet):
         else:
             raw_weights = ef.max_sharpe()
         cleaned_weights = ef.clean_weights()
-        ef.save_weights_to_file("weights.csv")
+        weights_file_path = os.path.join(settings.MEDIA_ROOT, 'weights.csv')
+        ef.save_weights_to_file(weights_file_path)
 
         latest_prices = get_latest_prices(df)
         da = DiscreteAllocation(
@@ -118,6 +122,7 @@ class PortfolioViewSet(viewsets.ModelViewSet):
             'leftover_funds': leftover,
             '예상 수익률': "{:.2f}%".format(ef.portfolio_performance()[0] * 100),
             '연간 변동성': "{:.2f}%".format(ef.portfolio_performance()[1] * 100),
-            '샤프 지수': ef.portfolio_performance()[2]
+            '샤프 지수': ef.portfolio_performance()[2],
+            'file': settings.MEDIA_URL + 'weights.csv',
         }
         return Response(response_data, status=status.HTTP_201_CREATED)
