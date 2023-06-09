@@ -18,21 +18,28 @@ const sharpIndex=useSelector(state => state.sharpIndex);
 const volatility=useSelector(state => state.volatility);
 const expectedReturn=useSelector(state => state.expectedReturn);
 
-const filteredWeights = {};
-for (const [key, value] of Object.entries(cleanedWeights)) {
-  if (typeof value === 'number' && !isNaN(value) && value !== 0) {
-    filteredWeights[key] = value;
+let filteredWeights = {};
+if (cleanedWeights) {
+  filteredWeights = {};
+  for (const [key, value] of Object.entries(cleanedWeights)) {
+    if (typeof value === 'number' && !isNaN(value) && value !== 0) {
+      filteredWeights[key] = value;
+    }
   }
 }
-const filteredallocation = {};
-for (const [key, value] of Object.entries(allocation)) {
-  if (
-    typeof value === 'number' &&
-    !isNaN(value) &&
-    value !== 0 &&
-    filteredWeights[key]
-  ) {
-    filteredallocation[key] = value;
+
+let filteredallocation = {};
+if (allocation) {
+  filteredallocation = {};
+  for (const [key, value] of Object.entries(allocation)) {
+    if (
+      typeof value === 'number' &&
+      !isNaN(value) &&
+      value !== 0 &&
+      filteredWeights[key]
+    ) {
+      filteredallocation[key] = value;
+    }
   }
 }
 

@@ -18,12 +18,12 @@ import { useState,useEffect } from 'react';
 import { useDispatch,useSelector } from "react-redux";
 
 export default function Profile({email,onChangeState}) {
-  const location = useLocation();
-  const [islogin, setislogin] = useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null); 
+  const dispatch=useDispatch();
   const open = Boolean(anchorEl);
 
   const username=useSelector(state => state.username);
+  const isLoggedIn=useSelector(state => state.isLoggedIn);
   const volatility=useSelector(state => state.volatility);
   const expectedReturn=useSelector(state => state.expectedReturn);
 
@@ -38,18 +38,17 @@ export default function Profile({email,onChangeState}) {
 
   const handleLogout = () => {
     // 로그아웃 처리 로직
-    setislogin(false);
-    localStorage.setItem('isLoggedIn', 'false');
-    onChangeState(islogin);
+    dispatch({ type:'UPDATE_login',payload:false});
+    onChangeState(isLoggedIn);
     // 필요한 다른 작업 수행 (예: 로그아웃 API 호출 등)
   };
 
   useEffect(() => {
-    if (!islogin) {
+    if (!isLoggedIn) {
       // 로그아웃된 상태이므로 필요한 작업을 수행합니다.
       window.location.reload();
     }
-  }, [islogin]);
+  }, [isLoggedIn]);
 
   const handleDownload = () => {
       const downloadURL = 'https://triplei.herokuapp.com/media/weights.csv'; // Update with your actual URL

@@ -6,13 +6,17 @@ import 'chart.js/auto';
 
 const Piechart = () => {
   const cleanedWeights = useSelector((state) => state.cleanedWeights);
-  
-  const filteredWeights = {};
-  for (const [key, value] of Object.entries(cleanedWeights)) {
-    if (typeof value === 'number' && !isNaN(value) && value !== 0) {
-      filteredWeights[key] = value;
+
+  let filteredWeights = {};
+  if (cleanedWeights) {
+    filteredWeights = {};
+    for (const [key, value] of Object.entries(cleanedWeights)) {
+      if (typeof value === 'number' && !isNaN(value) && value !== 0) {
+        filteredWeights[key] = value;
+      }
     }
   }
+
   const backgroundColor = [
     '#f76b8a',
     '#13D8F6',
@@ -35,11 +39,11 @@ const Piechart = () => {
     '#FF69B4',
     '#7B68EE',
   ];
+
   const data = {
     labels: Object.keys(filteredWeights),
     datasets: [
       {
-       
         data: Object.values(filteredWeights),
         backgroundColor: backgroundColor,
         hoverBorderColor: 'rgba(234, 236, 244, 1)',
@@ -52,11 +56,8 @@ const Piechart = () => {
 
   return (
     <div className="chart doughnut">
-    <Doughnut
-        data={data}
-        options={options}
-    />
-</div>
+      <Doughnut data={data} options={options} />
+    </div>
   );
 };
 
