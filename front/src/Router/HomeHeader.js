@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Profile from "../component/Profile";
 import { useLocation } from "react-router-dom";
 import { ElevatorSharp } from "@mui/icons-material";
-import Logo from "../images/Logo.PNG"
+import Logo from "../images/Logo.png"
 import { useDispatch,useSelector } from "react-redux";
 
 export default function HomeHeader({}) {

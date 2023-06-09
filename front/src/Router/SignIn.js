@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import {  useNavigate } from 'react-router-dom';
-import Logo from "../images/Logo.PNG"
+import Logo from "../images/Logo.png"
 import { useDispatch,useSelector } from "react-redux";
 
 function Copyright(props) {
