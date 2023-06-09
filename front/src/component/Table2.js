@@ -17,6 +17,23 @@ const leftoverFunds=useSelector(state => state.leftoverFunds);
 const sharpIndex=useSelector(state => state.sharpIndex);
 const volatility=useSelector(state => state.volatility);
 const expectedReturn=useSelector(state => state.expectedReturn);
+const filteredWeights = {};
+for (const [key, value] of Object.entries(cleanedWeights)) {
+  if (typeof value === 'number' && !isNaN(value) && value !== 0) {
+    filteredWeights[key] = value;
+  }
+}
+const filteredallocation = {};
+for (const [key, value] of Object.entries(allocation)) {
+  if (
+    typeof value === 'number' &&
+    !isNaN(value) &&
+    value !== 0 &&
+    filteredWeights[key]
+  ) {
+    filteredallocation[key] = value;
+  }
+}
 
 const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
   border: "3px solid black",
@@ -64,35 +81,17 @@ function createData(name, ratio, stockprice, quantity, sum) {
   return { name, ratio, stockprice, quantity, sum };
 }
 const stockPriceFallback = "N/A";
-/*
-const rows = [
-  createData("네이버", 14.48, 213500, 10, 2135000),
-  createData("삼성SDI", 21.57, 665000, 20, 13300000),
-  createData("카카오", 23.79, 56600, 15, 849000),
-  createData("LG", 27.96, 88400, 50, 4420000),
-  createData("SK이노베이션", 12.2, 177100, 49, 8676900),
-];*/
 
-const rows = Object.entries(allocation).map(([key, value]) => {
+const rows = Object.entries(filteredallocation).map(([key, value]) => {
   return createData(
     key,
-    cleanedWeights[key],
+    filteredWeights[key],
     stockPriceFallback,
     value,
     stockPriceFallback,
   );
 });
-/*
-const rows = Object.entries(allocation).map(([key, value]) => {
-  return createData(
-    key,
-    value,
-    rows[0].stockprice,
-    cleanedWeights[value],
-    rows[0].stockprice * cleanedWeights[value]
-  );
-});
-*/
+
 
 const SubtotalTable = () => (
     <StyledTableContainer component={Paper} >
