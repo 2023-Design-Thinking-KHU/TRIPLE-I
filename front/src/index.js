@@ -35,7 +35,7 @@ const initialState = {
   sharpIndex:null,
   volatility:null,
   expectedReturn:null,
-  weight:null,
+
 };
 
 // Define the reducer function
@@ -115,11 +115,6 @@ function reducer(state = initialState, action) {
       return{
         ...state,
         expectedReturn:action.payload,
-      }
-      case 'UPDATE_weight':
-      return{
-        ...state,
-        weight:action.payload,
       }
     default:
       return state;

@@ -22,9 +22,8 @@ export default function Profile({email,onChangeState}) {
   const [islogin, setislogin] = useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null); 
   const open = Boolean(anchorEl);
-  const username=useSelector(state => state.username);
 
-  const weight=useSelector(state => state.weight);
+  const username=useSelector(state => state.username);
   const volatility=useSelector(state => state.volatility);
   const expectedReturn=useSelector(state => state.expectedReturn);
 
@@ -53,7 +52,6 @@ export default function Profile({email,onChangeState}) {
   }, [islogin]);
 
   const handleDownload = () => {
-    if (weight) {
       const downloadURL = 'https://triplei.herokuapp.com/media/weights.csv'; // Update with your actual URL
       fetch(downloadURL)
         .then((response) => response.blob())
@@ -73,7 +71,6 @@ export default function Profile({email,onChangeState}) {
         .catch((error) => {
           console.error('Error downloading file:', error);
         });
-    }
   };
   
  

@@ -17,6 +17,7 @@ const leftoverFunds=useSelector(state => state.leftoverFunds);
 const sharpIndex=useSelector(state => state.sharpIndex);
 const volatility=useSelector(state => state.volatility);
 const expectedReturn=useSelector(state => state.expectedReturn);
+
 const filteredWeights = {};
 for (const [key, value] of Object.entries(cleanedWeights)) {
   if (typeof value === 'number' && !isNaN(value) && value !== 0) {

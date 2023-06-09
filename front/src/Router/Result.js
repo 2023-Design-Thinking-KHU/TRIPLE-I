@@ -16,7 +16,6 @@ export default function Result() {
   const profit = useSelector((state) => state.profit);
   const risk = useSelector((state) => state.risk);
   const cleanedWeights = useSelector((state) => state.cleanedWeights);
-  const weight=useSelector(state => state.weight);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -70,12 +69,6 @@ export default function Result() {
         dispatch({
           type: "UPDATE_sharpIndex",
           payload: responseData["샤프 지수"],
-          
-        }
-        );
-        dispatch({
-          type: "UPDATE_weight",
-          payload: responseData.file,
           
         }
         );
