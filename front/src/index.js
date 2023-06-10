@@ -36,6 +36,21 @@ const initialState = {
   volatility:null,
   expectedReturn:null,
 
+  sum1:0,
+  sum2:0,
+  sum3:0,
+  sum4:0,
+  sum5:0,
+  sum6:0,
+  sum7:0,
+  sum8:0,
+  sum9:0,
+  sum10:0,
+  sum11:0,
+  sum12:0,
+
+  danger:0,
+  correct:0,
 };
 
 // Define the reducer function
@@ -115,6 +130,76 @@ function reducer(state = initialState, action) {
       return{
         ...state,
         expectedReturn:action.payload,
+      }
+      case 'UPDATE_sum1':
+      return{
+        ...state,
+        sum1:action.payload,
+      }
+      case 'UPDATE_sum2':
+      return{
+        ...state,
+        sum2:action.payload,
+      }
+      case 'UPDATE_sum3':
+      return{
+        ...state,
+        sum3:action.payload,
+      }
+      case 'UPDATE_sum4':
+      return{
+        ...state,
+        sum4:action.payload,
+      }
+      case 'UPDATE_sum5':
+      return{
+        ...state,
+        sum5:action.payload,
+      }
+      case 'UPDATE_sum6':
+      return{
+        ...state,
+        sum6:action.payload,
+      }
+      case 'UPDATE_sum7':
+      return{
+        ...state,
+        sum7:action.payload,
+      }
+      case 'UPDATE_sum8':
+      return{
+        ...state,
+        sum8:action.payload,
+      }
+      case 'UPDATE_sum9':
+      return{
+        ...state,
+        sum9:action.payload,
+      }
+      case 'UPDATE_sum10':
+      return{
+        ...state,
+        sum10:action.payload,
+      }
+      case 'UPDATE_sum11':
+      return{
+        ...state,
+        sum11:action.payload,
+      }
+      case 'UPDATE_sum12':
+      return{
+        ...state,
+        sum12:action.payload,
+      }
+      case 'UPDATE_danger':
+      return{
+        ...state,
+        danger:action.payload,
+      }
+      case 'UPDATE_correct':
+      return{
+        ...state,
+        correct:action.payload,
       }
     default:
       return state;

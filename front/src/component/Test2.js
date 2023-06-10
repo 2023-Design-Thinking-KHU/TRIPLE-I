@@ -4,8 +4,16 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-
+import { useDispatch,useSelector } from "react-redux";
 export default function Radio2() {
+  const dispatch=useDispatch();
+  const handleChange = (event) => {
+    const value = event.target.value;
+    dispatch({
+      type: "UPDATE_sum2",
+      payload: value,
+    });
+  };
   return (
     <div
       style={{
@@ -21,29 +29,35 @@ export default function Radio2() {
         <RadioGroup
           aria-labelledby="demo-row-radio-buttons-group-label"
           name="row-radio-buttons-group"
+          onChange={handleChange}
         >
           <FormControlLabel
-            value="매우 낮은 수준"
+            value="1"
             control={<Radio />}
-            label="매우 낮은 수준"
+            label="상관 없다"
           />
 
           <FormControlLabel
-            value="낮은 수준"
+            value="2"
             control={<Radio />}
-            label="낮은 수준"
+            label="1년 이내"
           />
 
           <FormControlLabel
-            value="높은 수준"
+            value="3"
             control={<Radio />}
-            label="높은 수준"
+            label="6개월 이내"
           />
 
           <FormControlLabel
-            value="매우 높은 수준"
+            value="4"
             control={<Radio />}
-            label="매우 높은 수준"
+            label="3개월 이내"
+          />
+          <FormControlLabel
+            value="5"
+            control={<Radio />}
+            label="1개월 이내"
           />
         </RadioGroup>
       </FormControl>

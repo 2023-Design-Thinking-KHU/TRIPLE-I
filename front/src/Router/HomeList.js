@@ -6,132 +6,50 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import LoginModal from "../component/loginmodal";
-import { useState } from "react";
-export default function HomeList() {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
-  const handleLinkClick = () => {
-    if (!isLoggedIn) {
-      setLoginModalOpen(true);
-    }
-  };
+import list1 from "../images/list1.png"
+import list2 from "../images/list2.png"
+import list3 from "../images/list3.png"
 
-  const closeModal = () => {
-    setLoginModalOpen(false);
-  };
+export default function HomeList() {
+
   return (
     <Box
-      sx={{
-        marginRight: 5,
-        marginTop: 10,
-        width: 600,
-        bgcolor: "background.paper",
-        backgroundColor: "transparent",
-        border: "3px solid black",
-        borderRadius: "10px",
-      }}
+    sx={{
+     
+      marginTop: 10,
+      borderRadius: "10px",
+    }}
     >
-      <List>
+      <List
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+      }}>
+        
       <Link
           to="/Test"
           style={{ textDecoration: "none" }}
-          onClick={(event) => {
-            if (!isLoggedIn) {
-              event.preventDefault();
-              handleLinkClick();
-            }
-          }}
         >
           <ListItem
-            disablePadding
-            sx={{ borderBottom: "3px solid black", py: 4 }}
           >
             <ListItemButton>
-              <ListItemText
-                primary={
-                  <span
-                    style={{
-                      fontSize: "30px",
-                      fontWeight: "bold",
-                      color: "black",
-                      textShadow: "1px 1px 4px rgba(0, 0, 0, 0)",
-                    }}
-                  >
-                    투자 성향 테스트
-                  </span>
-                }
-              />
-              <AddCircleIcon sx={{ color: "black", fontSize: 40 }} />
+            <img src={list1} alt="Image 1" style={{width: "300px",height:"300px" }} />
             </ListItemButton>
           </ListItem>
         </Link>
         <Link
           to="/Main"
           style={{ textDecoration: "none" }}
-          onClick={(event) => {
-            if (!isLoggedIn) {
-              event.preventDefault();
-              handleLinkClick();
-            }
-          }}
         >
           <ListItem
-            disablePadding
-            sx={{ borderBottom: "3px solid black", py: 4 }}
           >
             <ListItemButton>
-              <ListItemText
-                primary={
-                  <span
-                    style={{
-                      fontSize: "30px",
-                      color: "black",
-                      fontWeight: "bold",
-                      textShadow: "2px 2px 4px rgba(0, 0, 0, 0)",
-                    }}
-                  >
-                    포트폴리오 추천
-                  </span>
-                }
-              />
-              <AddCircleIcon sx={{ color: "black", fontSize: 40 }} />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-        <Link
-          to="Explanation"
-          style={{ textDecoration: "none" }}
-          onClick={(event) => {
-            if (!isLoggedIn) {
-              event.preventDefault();
-              handleLinkClick();
-            }
-          }}
-        >
-          <ListItem disablePadding sx={{ py: 4 }}>
-            <ListItemButton>
-              <ListItemText
-                primary={
-                  <span
-                    style={{
-                      fontSize: "30px",
-                      color: "black",
-                      fontWeight: "bold",
-                      textShadow: "2px 2px 4px rgba(0, 0, 0, 0)",
-                    }}
-                  >
-                    상품설명 및 투자안내
-                  </span>
-                }
-              />
-              <AddCircleIcon sx={{ color: "black", fontSize: 40 }} />
+            <img src={list2} alt="Image 1" style={{width: "300px",height:"300px" }} />
             </ListItemButton>
           </ListItem>
         </Link>
       </List>
-      {isLoginModalOpen && <LoginModal closeModal={closeModal} />}
     </Box>
   );
 }

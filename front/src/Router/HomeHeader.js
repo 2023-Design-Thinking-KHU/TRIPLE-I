@@ -10,7 +10,6 @@ import { useDispatch,useSelector } from "react-redux";
 
 export default function HomeHeader({}) {
   const [propensity,setpropensity]=useState("");
-
   const username=useSelector(state => state.username);
   const email=useSelector(state => state.email);
   const isLoggedIn=useSelector(state => state.isLoggedIn);
@@ -61,13 +60,16 @@ export default function HomeHeader({}) {
       sx={{
         position: "fixed",
         top: 0,
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
         left: 0,
+        zIndex:1,
+        height: "100px",
         right: 0, // Set the background color to transparent
         "& a": {
           textDecoration: "none",
         },
       }}
-      style={{ backgroundColor: "black", position: "fixed", zIndex: 1 }}
+     
     >
       <Toolbar
         sx={{
@@ -85,7 +87,8 @@ export default function HomeHeader({}) {
               src={Logo}
               style={{
                 width: "200px",
-                height: "140px",
+                height: "100px",
+                marginTop:5,
                 marginLeft: "8rem",
                 marginRight: "9rem",
               }}
@@ -123,7 +126,6 @@ export default function HomeHeader({}) {
           </Box>
         </Box>
       </Toolbar>
-      <Divider sx={{ backgroundColor: "gray", marginTop: "-4px" }} />
     </AppBar>
   );
 }

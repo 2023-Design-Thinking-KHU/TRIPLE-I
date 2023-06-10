@@ -30,7 +30,7 @@ export default function Result() {
       risk: risk,
       profit: profit,
     };
-
+console.log(data);
     try {
       const response = await fetch(
         "https://triplei.herokuapp.com/portfolio/portfolio/",
@@ -44,8 +44,8 @@ export default function Result() {
       );
 
       if (response.ok) {
-        console.log(response);
         const responseData = await response.json(); // JSON 형식으로 변환된 응답 데이터
+        console.log(responseData);
         dispatch({
           type: "UPDATE_allocation",
           payload: responseData.allocation,

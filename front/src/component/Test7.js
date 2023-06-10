@@ -5,12 +5,12 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useDispatch,useSelector } from "react-redux";
-export default function Radio6() {
+export default function Radio7() {
   const dispatch=useDispatch();
   const handleChange = (event) => {
     const value = event.target.value;
     dispatch({
-      type: "UPDATE_sum6",
+      type: "UPDATE_sum7",
       payload: value,
     });
   };
@@ -56,7 +56,7 @@ export default function Radio6() {
            <FormControlLabel
             value="5"
             control={<Radio />}
-            label="100%이상"
+            label="100%"
           />
         </RadioGroup>
       </FormControl>

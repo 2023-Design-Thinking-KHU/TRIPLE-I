@@ -1,8 +1,11 @@
 import HomeHeader from "./HomeHeader";
 import HomeList from "./HomeList";
-import Home from "../images/Home.jpg";
+import Home from "../images/Home.png";
 import Note from "../images/Note.jpg"
-import home from "../images/Home1.jpg"
+import { Link } from "react-router-dom";
+import list3 from "../images/list3.png"
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 
 export default function HomePage() {
   return (
@@ -23,57 +26,22 @@ export default function HomePage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "rgba(0, 0, 0, 0.3)",
           }}
         >
           <div>
             <HomeHeader />
-            <div>
-              <h1
-                style={{
-                  color: "white",
-                  fontSize: 32,
-                  textShadow: "2px 2px 4px rgba(0, 0, 0, 2)",
-                }}
-              >
-                Building a Better Future
-              </h1>
-              <h1
-                style={{
-                  color: "white",
-                  fontSize: 50,
-                  textShadow: "2px 2px 4px rgba(0, 0, 0, 2)",
-                }}
-              >
-                with the Power of
-              </h1>
-              <h1
-                style={{
-                  color: "white",
-                  fontSize: 50,
-                  textShadow: "2px 2px 4px rgba(0, 0, 0, 2)",
-                }}
-              >
-                Financial KnowHow
-              </h1>
-            </div>
-          </div>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            backgroundImage: `url(${Note})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            height: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            
-          }}
+            <div style={{ display: "flex", justifyContent: "center" }}>
+          <Link
+          to="Explanation"
+          style={{ textDecoration: "none",marginLeft:50,marginTop:100 }}
         >
-          <HomeList />
+            <img src={list3} alt="Image 1" style={{width: "300px",height:"300px" }} />
+        </Link>
+          </div>
+          </div>
+          <div style={{marginTop:10,marginLeft:700}}>
+          <HomeList/>
+          </div>
         </div>
       </div>
     </>

@@ -43,7 +43,7 @@ class MyStrategy(bt.Strategy):
 
         for data in self.datas:
             symbol = data._name
-            weight = self.params.weights[symbol]
+            weight = self.params.weights(symbol, 0)
 
             if self.orders[symbol] is None:
                 size = (portfolio_value * weight) / total_weights
@@ -115,6 +115,8 @@ class PortfolioViewSet(viewsets.ModelViewSet):
         # Get the portfolio values
         portfolio_values = strategy.broker.get_value()
 
+        backtest_result = run_backtest(cleaned_weights)
+
         # Return the portfolio values as a response
         response_data = {
             'cleaned_weights': cleaned_weights,
@@ -124,5 +126,50 @@ class PortfolioViewSet(viewsets.ModelViewSet):
             '연간 변동성': "{:.2f}%".format(ef.portfolio_performance()[1] * 100),
             '샤프 지수': ef.portfolio_performance()[2],
             'file': settings.MEDIA_URL + 'weights.csv',
+            'backtest_result': backtest_result,
         }
         return Response(response_data, status=status.HTTP_201_CREATED)
+def run_backtest(cleaned_weights):
+    # Remove weights with a value of 0
+    cleaned_weights = {symbol: weight for symbol, weight in cleaned_weights.items() if weight != 0}
+
+    # Rename key
+    old_key = 'FB'
+    new_key = 'META'
+    symbols = ['GOOG', 'AAPL', 'META', 'BABA', 'AMZN', 'GE', 'AMD', 'WMT', 'BAC', 'GM', 'T', 'UAA', 'SHLD', 'XOM', 'RRC', 'BBY', 'MA', 'PFE', 'JPM', 'SBUX']
+    dataframes = {symbol: fdr.DataReader(symbol, start='2019-01-01', end='2022-12-31') for symbol in symbols}
+
+    # Save the value associated with the old key
+    value = cleaned_weights[old_key]
+
+    # Remove the old key-value pair
+    del cleaned_weights[old_key]
+
+    # Add the new key-value pair
+    cleaned_weights[new_key] = value
+
+    # Convert DataFrame to PandasData
+    datafeeds = [bt.feeds.PandasData(dataname=dataframes[symbol]) for symbol in symbols]
+
+    # Enter weights for each symbol
+    weights = cleaned_weights
+
+    cerebro = bt.Cerebro()
+
+    # Set the backtesting strategy
+    cerebro.addstrategy(MyStrategy, weights=weights)
+
+    # Add data feeds to cerebro
+    for datafeed, symbol in zip(datafeeds, symbols):
+        if symbol in weights:
+            cerebro.adddata(datafeed, name=symbol)
+
+    cerebro.run()
+
+    # Save the backtest result as an image
+    img_path = os.path.join(settings.MEDIA_ROOT, 'back.png')
+    cerebro.plot(iplot=False, style="candle", barup="red", bardown="blue", filename=img_path)
+
+    return img_path
+
+

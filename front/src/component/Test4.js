@@ -4,8 +4,16 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-
+import { useDispatch,useSelector } from "react-redux";
 export default function Radio4() {
+  const dispatch=useDispatch();
+  const handleChange = (event) => {
+    const value = event.target.value;
+    dispatch({
+      type: "UPDATE_sum4",
+      payload: value,
+    });
+  };
   return (
     <div
       style={{
@@ -21,23 +29,34 @@ export default function Radio4() {
         <RadioGroup
           aria-labelledby="demo-row-radio-buttons-group-label"
           name="column-radio-buttons-group"
+          onChange={handleChange}
         >
           <FormControlLabel
             value="1"
             control={<Radio />}
-            label="현재 일정한 수입이 발생하고 있으며, 향후 현재 수준을 유지하거나 증가할 것으로 예상"
+            label="20% 이내"
           />
 
           <FormControlLabel
             value="2"
             control={<Radio />}
-            label="현재 일정한 수입이 발생하고 있으나, 향후 감소하거나 불안정할 것으로 예상"
+            label="40% 이내"
           />
 
           <FormControlLabel
             value="3"
             control={<Radio />}
-            label="현재 일정한 수입이 발생하고 있으나, 향후 감소하거나 불안정할 것으로 예상"
+            label="60% 이내"
+          />
+           <FormControlLabel
+            value="4"
+            control={<Radio />}
+            label="80% 이내"
+          />
+           <FormControlLabel
+            value="5"
+            control={<Radio />}
+            label="100%"
           />
         </RadioGroup>
       </FormControl>

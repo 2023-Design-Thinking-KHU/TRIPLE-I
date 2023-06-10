@@ -5,7 +5,7 @@ import { Divider, Typography } from "@mui/material";
 
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
-import Money from "../images/money.jpg"
+import Money from "../images/money.png"
 export default function Explanation() {
   const [selectedIndex, setSelectedIndex] = React.useState(null);
 
@@ -60,7 +60,7 @@ export default function Explanation() {
         style={{
           fontSize: 30,
           position: "absolute",
-          top: "23%",
+          top: "21%",
           alignItems: "center",
           display: "flex",
           marginLeft: 140,
@@ -220,7 +220,7 @@ export default function Explanation() {
         <img
           src={Money}
           alt="Money"
-          style={{ marginTop: 50, width: "550px", height: "500px" }}
+          style={{ marginTop: 50, width: "550px", height: "440px" }}
         />
       </div>
     </div>

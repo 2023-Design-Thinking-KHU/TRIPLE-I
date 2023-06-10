@@ -17,7 +17,7 @@ const leftoverFunds=useSelector(state => state.leftoverFunds);
 const sharpIndex=useSelector(state => state.sharpIndex);
 const volatility=useSelector(state => state.volatility);
 const expectedReturn=useSelector(state => state.expectedReturn);
-
+console.log(cleanedWeights);
 let filteredWeights = {};
 if (cleanedWeights) {
   filteredWeights = {};
@@ -88,18 +88,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 function createData(name, ratio, stockprice, quantity, sum) {
   return { name, ratio, stockprice, quantity, sum };
 }
-const stockPriceFallback = "N/A";
 
 const rows = Object.entries(filteredallocation).map(([key, value]) => {
+  const totalPrice = amount * filteredWeights[key];
+  const stockPrice = Math.round((totalPrice / value) * 100) / 100;
+  const formattedValue = Math.floor(filteredWeights[key] * 100).toString() + "%";
   return createData(
     key,
-    filteredWeights[key],
-    stockPriceFallback,
+    formattedValue,
+    stockPrice,
     value,
-    stockPriceFallback,
+    totalPrice,
   );
 });
 
+const totalSum = rows.reduce((acc, row) => acc + row.sum, 0);
 
 const SubtotalTable = () => (
     <StyledTableContainer component={Paper} >
@@ -119,7 +122,7 @@ const SubtotalTable = () => (
           </StyledTableRow>
           <StyledTableRow>
             <StyledTableCell1 style={{fontSize:20}} colSpan={4} align="center">
-              연간 변동성
+              연간 위험도
             </StyledTableCell1>
             <StyledTableCell1 style={{fontSize:20}} align="center">{volatility}</StyledTableCell1>
           </StyledTableRow>
@@ -128,7 +131,7 @@ const SubtotalTable = () => (
               잔금
             </StyledTableCell1>
             <StyledTableCell1 style={{fontSize:20}} align="center">
-              {Math.floor(leftoverFunds)}원
+                {Math.floor((amount - totalSum))}원
             </StyledTableCell1>
           </StyledTableRow>
         </TableBody>
@@ -159,7 +162,7 @@ const SubtotalTable = () => (
               <StyledTableCell align="right">{row.ratio}</StyledTableCell>
               <StyledTableCell align="right">{row.stockprice}</StyledTableCell>
               <StyledTableCell align="right">{row.quantity}</StyledTableCell>
-              <StyledTableCell align="right">{row.sum}</StyledTableCell>
+              <StyledTableCell align="right">{Math.floor(row.sum)}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
