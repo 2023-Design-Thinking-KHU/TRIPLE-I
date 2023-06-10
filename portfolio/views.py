@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import os
+import django
 from django.conf import settings
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -16,7 +17,12 @@ from rest_framework import status
 from rest_framework import viewsets
 from django.http import FileResponse
 from django.conf import settings
+import pandas_datareader as pdr
+import yfinance as yf
+import matplotlib.pyplot as plt
 import shutil
+
+
 
 
 class MyStrategy(bt.Strategy):
@@ -43,11 +49,67 @@ class MyStrategy(bt.Strategy):
 
         for data in self.datas:
             symbol = data._name
-            weight = self.params.weights(symbol, 0)
+            weight = self.params.weights.get(symbol, 0)
 
             if self.orders[symbol] is None:
                 size = (portfolio_value * weight) / total_weights
                 self.order_target_percent(data=data, target=weight)
+
+
+# ...
+
+def run_backtest(cleaned_weights):
+    # Remove weights with a value of 0
+    cleaned_weights = {symbol: weight for symbol, weight in cleaned_weights.items() if weight != 0}
+
+    # Rename key
+    old_key = 'FB'
+    new_key = 'META'
+
+    # Check if old_key is in cleaned_weights
+    if old_key in cleaned_weights:
+        # Save the value associated with the old key
+        value = cleaned_weights[old_key]
+
+        # Remove the old key-value pair
+        del cleaned_weights[old_key]
+
+        # Add the new key-value pair
+        cleaned_weights[new_key] = value
+
+    symbols = ['GOOG', 'AAPL', 'META', 'BABA', 'AMZN', 'GE', 'AMD', 'WMT', 'BAC', 'GM', 'T', 'UAA', 'SHLD', 'XOM', 'RRC', 'BBY', 'MA', 'PFE', 'JPM', 'SBUX']
+    dataframes = {symbol: yf.download(symbol, start='2022-11-01', end='2022-12-31') for symbol in symbols}
+
+    # Convert DataFrame to PandasData
+    datafeeds = [bt.feeds.PandasData(dataname=dataframes[symbol]) for symbol in symbols]
+
+    # Enter weights for each symbol
+    weights = cleaned_weights
+
+    cerebro = bt.Cerebro()
+
+    # Set the backtesting strategy
+    cerebro.addstrategy(MyStrategy, weights=weights)
+
+    # Add data feeds to cerebro
+    for datafeed, symbol in zip(datafeeds, symbols):
+        if symbol in weights:
+            cerebro.adddata(datafeed, name=symbol)
+
+    cerebro.run()
+
+    # Save the backtest result as an image
+    img_path = os.path.join(settings.MEDIA_ROOT, 'back.png')
+    fig = cerebro.plot(iplot=False, style="candle", barup="red", bardown="blue", volume=False)
+    fig.savefig(img_path)
+    plt.close(fig)
+
+    print(img_path)
+    return img_path
+
+
+
+
 
 
 class PortfolioViewSet(viewsets.ModelViewSet):
@@ -70,9 +132,11 @@ class PortfolioViewSet(viewsets.ModelViewSet):
         ef = EfficientFrontier(mu, S)
 
         if portfolio.importance == 1:
-            raw_weights = ef.efficient_risk(portfolio.risk)
+            target_risk = portfolio.risk
+            raw_weights = ef.efficient_risk(target_risk)
         elif portfolio.importance == 0:
-            raw_weights = ef.efficient_return(portfolio.profit)
+            target_return = 0.04
+            raw_weights = ef.efficient_return(target_return)
         else:
             raw_weights = ef.max_sharpe()
         cleaned_weights = ef.clean_weights()
@@ -91,7 +155,7 @@ class PortfolioViewSet(viewsets.ModelViewSet):
                    'GM', 'T', 'UAA', 'SHLD', 'XOM', 'RRC', 'BBY', 'MA', 'PFE', 'JPM', 'SBUX']
         dataframes = {}
         for symbol in symbols:
-            df = fdr.DataReader(symbol, start='2021-12-01', end='2022-12-31')
+            df = fdr.DataReader(symbol, start='2022-06-01', end='2022-12-31')
             dataframes[symbol] = df
 
         value = cleaned_weights[old_key]
@@ -129,47 +193,3 @@ class PortfolioViewSet(viewsets.ModelViewSet):
             'backtest_result': backtest_result,
         }
         return Response(response_data, status=status.HTTP_201_CREATED)
-def run_backtest(cleaned_weights):
-    # Remove weights with a value of 0
-    cleaned_weights = {symbol: weight for symbol, weight in cleaned_weights.items() if weight != 0}
-
-    # Rename key
-    old_key = 'FB'
-    new_key = 'META'
-    symbols = ['GOOG', 'AAPL', 'META', 'BABA', 'AMZN', 'GE', 'AMD', 'WMT', 'BAC', 'GM', 'T', 'UAA', 'SHLD', 'XOM', 'RRC', 'BBY', 'MA', 'PFE', 'JPM', 'SBUX']
-    dataframes = {symbol: fdr.DataReader(symbol, start='2019-01-01', end='2022-12-31') for symbol in symbols}
-
-    # Save the value associated with the old key
-    value = cleaned_weights[old_key]
-
-    # Remove the old key-value pair
-    del cleaned_weights[old_key]
-
-    # Add the new key-value pair
-    cleaned_weights[new_key] = value
-
-    # Convert DataFrame to PandasData
-    datafeeds = [bt.feeds.PandasData(dataname=dataframes[symbol]) for symbol in symbols]
-
-    # Enter weights for each symbol
-    weights = cleaned_weights
-
-    cerebro = bt.Cerebro()
-
-    # Set the backtesting strategy
-    cerebro.addstrategy(MyStrategy, weights=weights)
-
-    # Add data feeds to cerebro
-    for datafeed, symbol in zip(datafeeds, symbols):
-        if symbol in weights:
-            cerebro.adddata(datafeed, name=symbol)
-
-    cerebro.run()
-
-    # Save the backtest result as an image
-    img_path = os.path.join(settings.MEDIA_ROOT, 'back.png')
-    cerebro.plot(iplot=False, style="candle", barup="red", bardown="blue", filename=img_path)
-
-    return img_path
-
-
