@@ -60,7 +60,7 @@ export default function HomeHeader({}) {
       sx={{
         position: "fixed",
         top: 0,
-        backgroundColor: "rgba(0, 0, 0, 0.6)",
+        backgroundColor: "rgba(255, 255, 255, 1)",
         left: 0,
         zIndex:1,
         height: "100px",
@@ -87,7 +87,7 @@ export default function HomeHeader({}) {
               src={Logo}
               style={{
                 width: "200px",
-                height: "100px",
+                height: "95px",
                 marginTop:5,
                 marginLeft: "8rem",
                 marginRight: "9rem",
@@ -105,18 +105,18 @@ export default function HomeHeader({}) {
             {isLoggedIn ? (
               <>
                 <Profile email={email} onChangeState={handleLogout} sx={{ zIndex: 1 }}></Profile>
-                <Button sx={{ color: "white", fontSize: 20 }}>
+                <Button sx={{ color: "black", fontSize: 20 }}>
                   {username}
                 </Button>
               </>
             ) : (
               <>
                 <Link to="/SignIn">
-                  <Button sx={{ color: "white", fontSize: 20 }}>로그인</Button>
+                  <Button sx={{ color: "black", fontSize: 20 }}>로그인</Button>
                 </Link>
                 <Link to="/SignUp">
                   <Button
-                    sx={{ color: "white", marginLeft: "1rem", fontSize: 20 }}
+                    sx={{ color: "black", marginLeft: "1rem", fontSize: 20 }}
                   >
                     회원가입
                   </Button>

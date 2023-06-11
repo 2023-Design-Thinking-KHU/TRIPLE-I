@@ -85,13 +85,13 @@ export default function Profile({ email, onChangeState }) {
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
+            sx={{ ml: 2 ,border: "2px solid gray"}}
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
             <Avatar>
-              <AccountCircleIcon sx={{ width: 55, height: 55 }} />
+            <AccountCircleIcon sx={{ width: 55, height: 55 }} />
             </Avatar>
           </IconButton>
         </Tooltip>

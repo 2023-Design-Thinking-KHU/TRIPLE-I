@@ -6,13 +6,15 @@ import { Link } from "react-router-dom";
 import list3 from "../images/list3.png"
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-
+import service from "../images/service.jpg"
+import about from "../images/about.jpg"
 export default function HomePage() {
   return (
     <>
       <div
         style={{
           display: "flex",
+          height: "100vh",
         }}
       >
         <div
@@ -22,7 +24,7 @@ export default function HomePage() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            height: "100vh",
+            height: "100%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -30,20 +32,13 @@ export default function HomePage() {
         >
           <div>
             <HomeHeader />
-            <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link
-          to="Explanation"
-          style={{ textDecoration: "none",marginLeft:50,marginTop:100 }}
-        >
-            <img src={list3} alt="Image 1" style={{width: "300px",height:"300px" }} />
-        </Link>
           </div>
-          </div>
-          <div style={{marginTop:10,marginLeft:700}}>
-          <HomeList/>
-          </div>
+          <div style={{ flex: 1, width: 1100, marginTop: 880 }}>
+            <HomeList />
+          </div>  
         </div>
       </div>
     </>
   );
+  
 }

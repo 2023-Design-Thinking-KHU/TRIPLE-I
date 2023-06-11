@@ -2,18 +2,110 @@ import * as React from "react";
 import HomeHeader from "./HomeHeader";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import { Divider, Typography } from "@mui/material";
-
+import img1 from "../images/04.jpg";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
-import Money from "../images/money.png"
+import Money from "../images/money.png";
+import "../component/MOD.css";
+import img11 from "../images/11.PNG";
+import img12 from "../images/12.PNG";
+import img13 from "../images/13.PNG";
+import img14 from "../images/14.PNG";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "@mui/material";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 export default function Explanation() {
   const [selectedIndex, setSelectedIndex] = React.useState(null);
+  const [open, setOpen] = useState(false);
 
+  const state1 = useSelector((state) => state.state1);
+  const state2 = useSelector((state) => state.state2);
+  const state3 = useSelector((state) => state.state3);
+  const state4 = useSelector((state) => state.state4);
+
+  
+  const handle1 = () => {
+    dispatch({
+      type: "UPDATE_state1",
+      payload: true,
+    });
+    setOpen(true);
+  };
+
+  const handle2 = () => {
+    dispatch({
+      type: "UPDATE_state2",
+      payload: true,
+    });
+    setOpen(true);
+  };
+
+  const handle3 = () => {
+    dispatch({
+      type: "UPDATE_state3",
+      payload: true,
+    });
+    setOpen(true);
+  };
+
+  const handle4 = () => {
+    dispatch({
+      type: "UPDATE_state4",
+      payload: true,
+    });
+    setOpen(true);
+  };
+
+  const dispatch = useDispatch();
+  const handleClose = () => {
+    dispatch({
+      type: "UPDATE_state1",
+      payload: false,
+    });
+    dispatch({
+      type: "UPDATE_state2",
+      payload: false,
+    });
+    dispatch({
+      type: "UPDATE_state3",
+      payload: false,
+    });
+    dispatch({
+      type: "UPDATE_state4",
+      payload: false,
+    });
+
+    setOpen(false);
+  };
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };
   return (
     <div>
+      {open && (
+        <div className="modal-overlay2" >
+          <div className="modal12">
+            <div className="modal-content2" >
+              {state1 === true ? <img src={img11} alt="Image 11" /> : null}
+              {state2 === true ? <img src={img12} alt="Image 12" /> : null}
+              {state3 === true ? <img src={img13} alt="Image 13" /> : null}
+              {state4 === true? (
+                <img src={img14} alt="Image 14" />
+              ) : null}{" "}
+               <div style={{ marginLeft: 360 }}>
+                  <button onClick={handleClose}>확인</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <img
+        src={img1}
+        style={{ marginLeft: 140, marginTop: 94, height: 150 }}
+      ></img>
       <HomeHeader />
       <div
         style={{
@@ -25,29 +117,11 @@ export default function Explanation() {
         }}
       >
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          <MonetizationOnIcon
-            sx={{
-              fontSize: 30,
-              marginLeft: 17,
-              marginTop: 3,
-            }}
-          />
-
-          <li
-            style={{
-              display: "inline",
-              listStyle: "none",
-              paddingLeft: "1px",
-              color: "black",
-            }}
-          >
-            금융상품 설명 및 투자방법 안내
-          </li>
           <Divider
             sx={{
               backgroundColor: "red",
               height: "100%",
-              marginTop: "8px",
+              marginTop: 13,
               width: "1480px",
               marginLeft: "140px",
               borderWidth: "2px", // 굵기를 2px로 설정
@@ -60,7 +134,7 @@ export default function Explanation() {
         style={{
           fontSize: 30,
           position: "absolute",
-          top: "21%",
+          marginTop: -80,
           alignItems: "center",
           display: "flex",
           marginLeft: 140,
@@ -71,18 +145,16 @@ export default function Explanation() {
       <div
         style={{
           position: "absolute",
-          top: "40%",
+          marginTop: 70,
           alignItems: "center",
           marginLeft: 140,
-          border: "1px solid black",
+          border: "4px solid black",
           padding: 10,
+          backgroundColor: "tan",
         }}
       >
         <List component="nav" aria-label="secondary mailbox folder">
-          <ListItemButton
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
-          >
+          <ListItemButton selected={selectedIndex === 0} onClick={handle1}>
             <Typography
               style={{
                 fontSize: 30,
@@ -94,7 +166,7 @@ export default function Explanation() {
           </ListItemButton>
           <Divider
             sx={{
-              backgroundColor: "black",
+              backgroundColor: "gray",
               height: "100%",
               marginTop: "8px",
               width: "700px",
@@ -102,10 +174,7 @@ export default function Explanation() {
               borderStyle: "solid",
             }}
           />
-          <ListItemButton
-            selected={selectedIndex === 1}
-            onClick={(event) => handleListItemClick(event, 1)}
-          >
+          <ListItemButton selected={selectedIndex === 1} onClick={handle2}>
             <Typography
               style={{
                 fontSize: 30,
@@ -117,7 +186,7 @@ export default function Explanation() {
           </ListItemButton>
           <Divider
             sx={{
-              backgroundColor: "black",
+              backgroundColor: "gray",
               height: "100%",
               marginTop: "8px",
               width: "700px",
@@ -125,10 +194,27 @@ export default function Explanation() {
               borderStyle: "solid",
             }}
           />
-          <ListItemButton
-            selected={selectedIndex === 2}
-            onClick={(event) => handleListItemClick(event, 2)}
-          >
+          <ListItemButton selected={selectedIndex === 2} onClick={handle3}>
+            <Typography
+              style={{
+                fontSize: 30,
+                textShadow: "10px 5px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              채권
+            </Typography>
+          </ListItemButton>
+          <Divider
+            sx={{
+              backgroundColor: "gray",
+              height: "100%",
+              marginTop: "8px",
+              width: "700px",
+              borderWidth: "1px", // 굵기를 2px로 설정
+              borderStyle: "solid",
+            }}
+          />
+          <ListItemButton selected={selectedIndex === 3} onClick={handle4}>
             <Typography
               style={{
                 fontSize: 30,
@@ -140,30 +226,7 @@ export default function Explanation() {
           </ListItemButton>
           <Divider
             sx={{
-              backgroundColor: "black",
-              height: "100%",
-              marginTop: "8px",
-              width: "700px",
-              borderWidth: "1px", // 굵기를 2px로 설정
-              borderStyle: "solid",
-            }}
-          />
-          <ListItemButton
-            selected={selectedIndex === 3}
-            onClick={(event) => handleListItemClick(event, 3)}
-          >
-            <Typography
-              style={{
-                fontSize: 30,
-                textShadow: "10px 5px 4px rgba(0, 0, 0, 0.3)",
-              }}
-            >
-              코인
-            </Typography>
-          </ListItemButton>
-          <Divider
-            sx={{
-              backgroundColor: "black",
+              backgroundColor: "gray",
               height: "100%",
               marginTop: "8px",
               width: "700px",
@@ -186,7 +249,7 @@ export default function Explanation() {
           </ListItemButton>
           <Divider
             sx={{
-              backgroundColor: "black",
+              backgroundColor: "gray",
               height: "100%",
               marginTop: "8px",
               width: "700px",
@@ -220,7 +283,7 @@ export default function Explanation() {
         <img
           src={Money}
           alt="Money"
-          style={{ marginTop: 50, width: "550px", height: "440px" }}
+          style={{ marginTop: 80, width: "550px", height: "460px" }}
         />
       </div>
     </div>

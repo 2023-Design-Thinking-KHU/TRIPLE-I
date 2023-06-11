@@ -10,7 +10,6 @@ import TestPage from './Router/TestPage';
 import Portfolio from './Router/Portfolio';
 import Result from './Router/Result';
 import Explanation from './Router/Explanation';
-import Modal from './component/Modal';
 import SignIn from './Router/SignIn';
 import SignUp from './Router/SignUp';
 import reportWebVitals from './reportWebVitals';
@@ -51,6 +50,11 @@ const initialState = {
 
   danger:0,
   correct:0,
+
+  state1:false,
+  state2:false,
+  state3:false,
+  state4:false,
 };
 
 // Define the reducer function
@@ -201,6 +205,31 @@ function reducer(state = initialState, action) {
         ...state,
         correct:action.payload,
       }
+      case 'UPDATE_state1':
+      return{
+        ...state,
+        state1:action.payload,
+      }
+      case 'UPDATE_state1':
+        return{
+          ...state,
+          state1:action.payload,
+        }
+      case 'UPDATE_state2':
+         return{
+            ...state,
+            state2:action.payload,
+        }  
+        case 'UPDATE_state3':
+          return{
+            ...state,
+            state3:action.payload,
+          }
+          case 'UPDATE_state4':
+            return{
+              ...state,
+              state4:action.payload,
+            }     
     default:
       return state;
   }
@@ -221,7 +250,6 @@ ReactDOM.render(
           <Route path="/Main" element={<Portfolio />} />
           <Route path="/Result" element={<Result />} />
           <Route path="/Explanation" element={<Explanation />} />
-          <Route path="/Modal" element={<Modal />} />
         </Routes>
       </BrowserRouter>
     </Provider>

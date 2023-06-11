@@ -20,10 +20,11 @@ import img2 from "../images/2.png";
 import img3 from "../images/3.png";
 import img4 from "../images/4.png";
 import img5 from "../images/5.png";
+import img6 from "../images/01.jpg"
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import * as React from "react";
-import "../component/Modal.css";
+import "../component/Modal1.css";
 import Modal from "@mui/material/Modal";
 import CancelIcon from "@mui/icons-material/Cancel";
 export default function TestPage() {
@@ -129,7 +130,7 @@ export default function TestPage() {
           </div>
         </div>
       )}
-
+    <img src={img6} style={{marginLeft:140,marginTop:94,height:150}}></img>
       <HomeHeader />
       <div
         style={{
@@ -139,32 +140,15 @@ export default function TestPage() {
           alignItems: "center",
           display: "flex",
         }}
-      >
+      >   
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          <AttachMoneyIcon
-            sx={{
-              fontSize: 30,
-              marginLeft: 17,
-              marginTop: 3,
-            }}
-          />
-
-          <li
-            style={{
-              display: "inline",
-              listStyle: "none",
-              paddingLeft: "1px",
-              color: "black",
-            }}
-          >
-            투자성향 진단
-          </li>
           <Divider
             sx={{
               backgroundColor: "red",
               height: "100%",
               marginTop: "8px",
               width: "1200px",
+              marginTop:13,
               marginLeft: "140px",
               borderWidth: "2px", // 굵기를 2px로 설정
               borderStyle: "solid",

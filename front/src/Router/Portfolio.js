@@ -12,7 +12,7 @@ import MonetizationOnTwoToneIcon from "@mui/icons-material/MonetizationOnTwoTone
 import { useDispatch, useSelector } from "react-redux";
 import Profit from "../component/Profit";
 import AdjustIcon from "@mui/icons-material/Adjust";
-
+import img1 from "../images/02.jpg"
 export default function Portfolio() {
   const ariaLabel = { "aria-label": "description" };
   const [investmentAmount, setInvestmentAmount] = useState("");
@@ -146,7 +146,7 @@ export default function Portfolio() {
           </div>
         </div>
       </Modal>
-
+      <img src={img1} style={{marginLeft:140,marginTop:94,height:150}}></img>
       <HomeHeader />
       <div
         style={{
@@ -158,29 +158,12 @@ export default function Portfolio() {
         }}
       >
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          <AssessmentIcon
-            sx={{
-              fontSize: 30,
-              marginLeft: 17,
-              marginTop: 3,
-            }}
-          />
-
-          <li
-            style={{
-              display: "inline",
-              listStyle: "none",
-              paddingLeft: "1px",
-              color: "black",
-            }}
-          >
-            포트폴리오 진단
-          </li>
+         
           <Divider
             sx={{
               backgroundColor: "red",
               height: "100%",
-              marginTop: "8px",
+              marginTop: 14,
               width: "1200px",
               marginLeft: "140px",
               borderWidth: "2px", // 굵기를 2px로 설정
@@ -193,7 +176,7 @@ export default function Portfolio() {
         style={{
           fontSize: 20,
           position: "absolute",
-          top: "32%",
+          marginTop:24,
           alignItems: "center",
           display: "flex",
           marginLeft: 150,
@@ -205,7 +188,7 @@ export default function Portfolio() {
         component="form"
         sx={{
           "& > :not(style)": { m: 5 },
-          marginTop: 25,
+          marginTop: -2,
           marginLeft: 28,
         }}
         noValidate
