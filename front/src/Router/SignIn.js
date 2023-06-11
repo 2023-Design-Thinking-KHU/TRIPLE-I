@@ -85,6 +85,9 @@ export default function SignIn({onChangeState}) {
         // Access the 'pk' value from the response data
         dispatch({ type:'UPDATE_login',payload:true});
         dispatch({ type: 'UPDATE_PK', payload: data.pk });
+        localStorage.setItem('pk', data.pk);
+        localStorage.setItem('isLoggedIn', true);
+        console.log(data.pk);
         navigate("/");
       })
       .catch(error => {

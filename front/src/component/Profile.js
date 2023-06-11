@@ -28,6 +28,7 @@ export default function Profile({ email, onChangeState }) {
   const dispatch = useDispatch();
   const open = Boolean(anchorEl);
   const danger = useSelector((state) => state.danger);
+  const amount = useSelector((state) => state.amount);
   const correct = useSelector((state) => state.correct);
   const username = useSelector((state) => state.username);
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
@@ -161,6 +162,11 @@ export default function Profile({ email, onChangeState }) {
         <h4 style={{ textAlign: "center", marginRight: 13 }}>
           포트폴리오 결과
         </h4>
+        <h5 style={{fontSize:15,marginLeft:8}}>
+        투자가용금액:{amount}<br /><br />
+        예상 수익률:{expectedReturn}<br /><br />
+        연간 위험도:{volatility}<br />
+        </h5>
         <Button
           sx={{ marginLeft: 8.5 }}
           variant="contained"
