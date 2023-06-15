@@ -1,3 +1,4 @@
+import time
 from django.shortcuts import render
 import os
 from django.conf import settings
@@ -108,6 +109,8 @@ class PortfolioViewSet(viewsets.ModelViewSet):
             cerebro.adddata(datafeed, name=symbol)
 
         cerebro.run()
+
+        time.sleep(7)
 
         # Retrieve the strategy instance
         strategy = cerebro.runstrats[0][0]
