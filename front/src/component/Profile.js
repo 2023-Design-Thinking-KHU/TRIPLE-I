@@ -22,6 +22,7 @@ import img3 from "../images/3.png";
 import img4 from "../images/4.png";
 import img5 from "../images/5.png";
 import CancelIcon from "@mui/icons-material/Cancel";
+import JSZip from 'jszip';
 
 export default function Profile({ email, onChangeState }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -58,26 +59,46 @@ export default function Profile({ email, onChangeState }) {
   }, [isLoggedIn]);
 
   const handleDownload = () => {
-    const downloadURL = "https://triplei.herokuapp.com/media/weights.csv"; // Update with your actual URL
-    fetch(downloadURL)
-      .then((response) => response.blob())
-      .then((blob) => {
-        // Create a temporary URL for the downloaded file
-        const url = URL.createObjectURL(blob);
-        // Create a link element
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "weights.csv"; // Set the filename for the downloaded file
-        // Programmatically click the link to start the download
-        link.click();
-        // Clean up the temporary URL and link element
-        URL.revokeObjectURL(url);
-        link.remove();
+    const weightsDownloadURL = "https://triplei.herokuapp.com/media/weights.csv";
+    const chartDownloadURL = "https://triplei.herokuapp.com/media/chart.png";
+  
+    Promise.all([fetch(weightsDownloadURL), fetch(chartDownloadURL)])
+      .then((responses) => Promise.all(responses.map((response) => response.blob())))
+      .then((blobs) => {
+        const weightsBlob = blobs[0];
+        const chartBlob = blobs[1];
+  
+        const zip = new JSZip();
+        zip.file("weights.csv", weightsBlob, { binary: true });
+        zip.file("chart.png", chartBlob, { binary: true });
+  
+        zip.generateAsync({ type: "blob" })
+          .then((zipBlob) => {
+            // Create a temporary URL for the ZIP file
+            const zipUrl = URL.createObjectURL(zipBlob);
+  
+            // Create a link element for the ZIP file
+            const zipLink = document.createElement("a");
+            zipLink.href = zipUrl;
+            zipLink.download = "weights_and_chart.zip";
+  
+            // Programmatically click the link to start the download
+            zipLink.click();
+  
+            // Clean up the temporary URL and link element
+            URL.revokeObjectURL(zipUrl);
+            zipLink.remove();
+          })
+          .catch((error) => {
+            console.error("Error creating ZIP file:", error);
+          });
       })
       .catch((error) => {
-        console.error("Error downloading file:", error);
+        console.error("Error downloading files:", error);
       });
   };
+  
+  
 
   return (
     <React.Fragment>

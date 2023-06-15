@@ -13,6 +13,7 @@ def download_weights_csv(request):
             response['Content-Disposition'] = 'attachment; filename="weights_and_chart.zip"'
             response['Content-Type'] = 'application/zip'
 
+
             response.write(weights_file.read())
 
             # Download the chart file and append it to the response
