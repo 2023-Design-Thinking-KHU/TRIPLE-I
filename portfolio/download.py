@@ -6,7 +6,7 @@ import os
 def download_weights_csv(request):
     file_paths = [
         os.path.join(settings.MEDIA_ROOT, 'weights.csv'),
-        os.path.join(settings.MEDIA_ROOT, '차트.png'),
+        os.path.join(settings.MEDIA_ROOT, 'chart.png'),
     ]
     zip_file_path = os.path.join(settings.MEDIA_ROOT, 'download.zip')
     
