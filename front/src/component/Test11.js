@@ -34,30 +34,29 @@ export default function Radio11() {
           <FormControlLabel
             value="1"
             control={<Radio />}
-            label="100% "
+            label="매우 높다 "
           />
 
           <FormControlLabel
             value="2"
             control={<Radio />}
-            label="80% 이내"
+            label="높다"
           />
 
           <FormControlLabel
             value="3"
             control={<Radio />}
-            label="60% 이내"
+            label="보통"
           />
            <FormControlLabel
             value="4"
             control={<Radio />}
-            label="40%이내"
+            label="낮다"
           />
            <FormControlLabel
             value="5"
             control={<Radio />}
-            label="20%
-            "
+            label="매우 낮다"
           />
         </RadioGroup>
       </FormControl>

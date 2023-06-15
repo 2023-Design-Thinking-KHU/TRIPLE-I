@@ -108,6 +108,7 @@ export default function HomeHeader({}) {
               marginLeft: 80,
             }}
           >
+            {console.log(isLoggedIn)}
             {isLoggedIn ? (
               <>
                 <Profile

@@ -1,235 +1,254 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
 
-
-import HomePage from './Router/HomePage';
-import TestPage from './Router/TestPage';
-import Portfolio from './Router/Portfolio';
-import Result from './Router/Result';
-import Explanation from './Router/Explanation';
-import SignIn from './Router/SignIn';
-import SignUp from './Router/SignUp';
-import reportWebVitals from './reportWebVitals';
+import HomePage from "./Router/HomePage";
+import TestPage from "./Router/TestPage";
+import Portfolio from "./Router/Portfolio";
+import Result from "./Router/Result";
+import Explanation from "./Router/Explanation";
+import SignIn from "./Router/SignIn";
+import SignUp from "./Router/SignUp";
+import reportWebVitals from "./reportWebVitals";
 
 // Define the initial state
 const initialState = {
-  isLoggedIn:false,
-  pk:null,
+  isLoggedIn: false,
+  pk: null,
 
   username: null,
-  email:"",
-  propensity:"",
+  email: "",
+  propensity: "",
 
-  amount:null,
-  importance:null,
-  profit:null,
-  risk:null,
+  amount: null,
+  importance: null,
+  profit: null,
+  risk: null,
 
-  allocation:null,
-  cleanedWeights:null,
-  leftoverFunds:null,
-  sharpIndex:null,
-  volatility:null,
-  expectedReturn:null,
+  allocation: null,
+  cleanedWeights: null,
+  leftoverFunds: null,
+  sharpIndex: null,
+  volatility: null,
+  expectedReturn: null,
 
-  sum1:0,
-  sum2:0,
-  sum3:0,
-  sum4:0,
-  sum5:0,
-  sum6:0,
-  sum7:0,
-  sum8:0,
-  sum9:0,
-  sum10:0,
-  sum11:0,
-  sum12:0,
+  sum1: 0,
+  sum2: 0,
+  sum3: 0,
+  sum4: 0,
+  sum5: 0,
+  sum6: 0,
+  sum7: 0,
+  sum8: 0,
+  sum9: 0,
+  sum10: 0,
+  sum11: 0,
+  sum12: 0,
 
-  danger:0,
-  correct:0,
+  danger: 0,
+  correct: 0,
 
-  state1:false,
-  state2:false,
-  state3:false,
-  state4:false,
+  state1: false,
+  state2: false,
+  state3: false,
+  state4: false,
+  state5: false,
+  state6: false,
+  state7: false,
+  state8: false,
 };
 
 // Define the reducer function
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'UPDATE_PK':
+    case "UPDATE_PK":
       return {
         ...state,
         pk: action.payload,
       };
-    case 'UPDATE_login':
+    case "UPDATE_login":
       return {
         ...state,
-        isLoggedIn:action.payload,
-      }
-    case 'UPDATE_username':
-      return{
-        ...state,
-        username:action.payload,
-      }
-    case 'UPDATE_email':
+        isLoggedIn: action.payload,
+      };
+    case "UPDATE_username":
       return {
         ...state,
-        email:action.payload,
-      }
-    case 'UPDATE_propensity':
-      return{
+        username: action.payload,
+      };
+    case "UPDATE_email":
+      return {
         ...state,
-        propensity:action.payload,
-      }
-    case 'UPDATE_amount':
-      return{
+        email: action.payload,
+      };
+    case "UPDATE_propensity":
+      return {
         ...state,
-        amount:action.payload,
-      }
-    case 'UPDATE_risk':
-        return{
-          ...state,
-          risk:action.payload,
-        }
-    case 'UPDATE_profit':
-        return{
-            ...state,
-            profit:action.payload,
-          }
-    case 'UPDATE_importance':
-        return{
-          ...state,
-          importance:action.payload,
-        }
-    case 'UPDATE_allocation':
-      return{
+        propensity: action.payload,
+      };
+    case "UPDATE_amount":
+      return {
         ...state,
-        allocation:action.payload,
-      }
-      case 'UPDATE_cleanedWeights':
-      return{
+        amount: action.payload,
+      };
+    case "UPDATE_risk":
+      return {
         ...state,
-        cleanedWeights:action.payload,
-      }
-      case 'UPDATE_leftoverFunds':
-      return{
+        risk: action.payload,
+      };
+    case "UPDATE_profit":
+      return {
         ...state,
-        leftoverFunds:action.payload,
-      }
-      case 'UPDATE_sharpIndex':
-      return{
+        profit: action.payload,
+      };
+    case "UPDATE_importance":
+      return {
         ...state,
-        sharpIndex:action.payload,
-      }
-      case 'UPDATE_volatility':
-      return{
+        importance: action.payload,
+      };
+    case "UPDATE_allocation":
+      return {
         ...state,
-        volatility:action.payload,
-      }
-      case 'UPDATE_expectedReturn':
-      return{
+        allocation: action.payload,
+      };
+    case "UPDATE_cleanedWeights":
+      return {
         ...state,
-        expectedReturn:action.payload,
-      }
-      case 'UPDATE_sum1':
-      return{
+        cleanedWeights: action.payload,
+      };
+    case "UPDATE_leftoverFunds":
+      return {
         ...state,
-        sum1:action.payload,
-      }
-      case 'UPDATE_sum2':
-      return{
+        leftoverFunds: action.payload,
+      };
+    case "UPDATE_sharpIndex":
+      return {
         ...state,
-        sum2:action.payload,
-      }
-      case 'UPDATE_sum3':
-      return{
+        sharpIndex: action.payload,
+      };
+    case "UPDATE_volatility":
+      return {
         ...state,
-        sum3:action.payload,
-      }
-      case 'UPDATE_sum4':
-      return{
+        volatility: action.payload,
+      };
+    case "UPDATE_expectedReturn":
+      return {
         ...state,
-        sum4:action.payload,
-      }
-      case 'UPDATE_sum5':
-      return{
+        expectedReturn: action.payload,
+      };
+    case "UPDATE_sum1":
+      return {
         ...state,
-        sum5:action.payload,
-      }
-      case 'UPDATE_sum6':
-      return{
+        sum1: action.payload,
+      };
+    case "UPDATE_sum2":
+      return {
         ...state,
-        sum6:action.payload,
-      }
-      case 'UPDATE_sum7':
-      return{
+        sum2: action.payload,
+      };
+    case "UPDATE_sum3":
+      return {
         ...state,
-        sum7:action.payload,
-      }
-      case 'UPDATE_sum8':
-      return{
+        sum3: action.payload,
+      };
+    case "UPDATE_sum4":
+      return {
         ...state,
-        sum8:action.payload,
-      }
-      case 'UPDATE_sum9':
-      return{
+        sum4: action.payload,
+      };
+    case "UPDATE_sum5":
+      return {
         ...state,
-        sum9:action.payload,
-      }
-      case 'UPDATE_sum10':
-      return{
+        sum5: action.payload,
+      };
+    case "UPDATE_sum6":
+      return {
         ...state,
-        sum10:action.payload,
-      }
-      case 'UPDATE_sum11':
-      return{
+        sum6: action.payload,
+      };
+    case "UPDATE_sum7":
+      return {
         ...state,
-        sum11:action.payload,
-      }
-      case 'UPDATE_sum12':
-      return{
+        sum7: action.payload,
+      };
+    case "UPDATE_sum8":
+      return {
         ...state,
-        sum12:action.payload,
-      }
-      case 'UPDATE_danger':
-      return{
+        sum8: action.payload,
+      };
+    case "UPDATE_sum9":
+      return {
         ...state,
-        danger:action.payload,
-      }
-      case 'UPDATE_correct':
-      return{
+        sum9: action.payload,
+      };
+    case "UPDATE_sum10":
+      return {
         ...state,
-        correct:action.payload,
-      }
-      case 'UPDATE_state1':
-      return{
+        sum10: action.payload,
+      };
+    case "UPDATE_sum11":
+      return {
         ...state,
-        state1:action.payload,
-      }
-      case 'UPDATE_state1':
-        return{
-          ...state,
-          state1:action.payload,
-        }
-      case 'UPDATE_state2':
-         return{
-            ...state,
-            state2:action.payload,
-        }  
-        case 'UPDATE_state3':
-          return{
-            ...state,
-            state3:action.payload,
-          }
-          case 'UPDATE_state4':
-            return{
-              ...state,
-              state4:action.payload,
-            }     
+        sum11: action.payload,
+      };
+    case "UPDATE_sum12":
+      return {
+        ...state,
+        sum12: action.payload,
+      };
+    case "UPDATE_danger":
+      return {
+        ...state,
+        danger: action.payload,
+      };
+    case "UPDATE_correct":
+      return {
+        ...state,
+        correct: action.payload,
+      };
+    case "UPDATE_state1":
+      return {
+        ...state,
+        state1: action.payload,
+      };
+    case "UPDATE_state2":
+      return {
+        ...state,
+        state2: action.payload,
+      };
+    case "UPDATE_state3":
+      return {
+        ...state,
+        state3: action.payload,
+      };
+    case "UPDATE_state4":
+      return {
+        ...state,
+        state4: action.payload,
+      };
+
+    case "UPDATE_state5":
+      return {
+        ...state,
+        state5: action.payload,
+      };
+    case "UPDATE_state6":
+      return {
+        ...state,
+        state6: action.payload,
+      };
+    case "UPDATE_state7":
+      return {
+        ...state,
+        state7: action.payload,
+      };
+    case "UPDATE_state8":
+      return {
+        ...state,
+        state8: action.payload,
+      };
     default:
       return state;
   }
@@ -254,7 +273,7 @@ ReactDOM.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 reportWebVitals();

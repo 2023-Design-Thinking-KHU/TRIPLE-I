@@ -29,7 +29,7 @@ export default function Radio3() {
         <span style={{ marginLeft: '80px' }}></span>
         <FormControlLabel value="3" control={<Radio />} label=" -50% 이내" />
         <span style={{ marginLeft: '80px' }}></span>
-        <FormControlLabel value="4" control={<Radio />} label=" -75%" />
+        <FormControlLabel value="4" control={<Radio />} label=" -75% 이내" />
         <span style={{ marginLeft: '80px' }}></span>
         <FormControlLabel value="5" control={<Radio />} label="상관 없다 
 " />

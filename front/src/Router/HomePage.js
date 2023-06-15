@@ -8,6 +8,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import service from "../images/service.jpg"
 import about from "../images/about.jpg"
+import Money from "../images/money.png";
 export default function HomePage() {
   return (
     <>
@@ -27,18 +28,21 @@ export default function HomePage() {
             height: "100%",
             display: "flex",
             alignItems: "center",
+            flexDirection: "column",
             justifyContent: "center",
           }}
         >
-          <div>
-            <HomeHeader />
+          <div style={{marginTop:1900}}>
+          <HomeHeader/>
           </div>
-          <div style={{ flex: 1, width: 1100, marginTop: 880 }}>
+          <div  style={{ flex: 1, width: 1650, }}>
             <HomeList />
+          </div>
+          <div>
+          <img src={Money} style={{marginTop:50,height:550}}></img>
           </div>  
         </div>
       </div>
     </>
   );
-  
 }

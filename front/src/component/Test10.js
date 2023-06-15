@@ -5,6 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useDispatch,useSelector } from "react-redux";
+
 export default function Radio10() {
   const dispatch=useDispatch();
   const handleChange = (event) => {
@@ -34,30 +35,29 @@ export default function Radio10() {
           <FormControlLabel
             value="1"
             control={<Radio />}
-            label="100%"
+            label="우량주 매우선호"
           />
 
           <FormControlLabel
             value="2"
             control={<Radio />}
-            label="80% 이내"
+            label="우량주 선호"
           />
 
           <FormControlLabel
             value="3"
             control={<Radio />}
-            label="60% 이내"
+            label="중립"
           />
            <FormControlLabel
             value="4"
             control={<Radio />}
-            label="40%이내"
+            label="소형주 선호"
           />
            <FormControlLabel
             value="5"
             control={<Radio />}
-            label="20%
-            "
+            label="소형주 매우선호"
           />
         </RadioGroup>
       </FormControl>

@@ -142,18 +142,6 @@ export default function TestPage() {
         }}
       >   
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          <Divider
-            sx={{
-              backgroundColor: "red",
-              height: "100%",
-              marginTop: "8px",
-              width: "1200px",
-              marginTop:13,
-              marginLeft: "140px",
-              borderWidth: "2px", // 굵기를 2px로 설정
-              borderStyle: "solid",
-            }}
-          />
         </ul>
       </div>
       <div
@@ -329,8 +317,8 @@ export default function TestPage() {
       >
         <div>
           <h6>
-            11. 주식을 매수한다면, 세계 경제 흐름, 환율, 유가 등을 얼마나
-            고려하시나요?
+            11. 주식을 매수한다면, 세계 경제 흐름, 환율, 유가 등이
+             판단에 얼마나 많은 영향을 미치나요?
           </h6>
           <Radio11 />
         </div>

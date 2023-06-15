@@ -60,8 +60,8 @@ export default function Portfolio() {
             backgroundColor: "#fff",
             padding: "20px",
             borderRadius: "10px",
-            height: "200px",
-            width: "1000px",
+            height: "400px",
+            width: "1100px",
             display: "grid",
             gridTemplateColumns: "1fr 1fr 1fr", // 두 개의 동일한 크기의 열로 구성
             alignItems: "center", // 수직 정렬
@@ -89,6 +89,7 @@ export default function Portfolio() {
             >
               위험도 중시
             </Button>
+            <h4>설정한 위험도를 넘지않는 포트폴리오 중<br/> 수익률이 가장 높은 포트폴리오 추천</h4>
           </div>
           <div
             style={{
@@ -116,6 +117,7 @@ export default function Portfolio() {
             >
               수익률 중시
             </Button>
+            <h4>설정한 수익률을 만족하는 포트폴리오 중<br/>위험도가 가장 낮은 포트폴리오 추천</h4>
           </div>
           <div
             style={{
@@ -136,13 +138,14 @@ export default function Portfolio() {
               onClick={() => handleImportanceChange("2")}
               sx={{
                 margin: "10px",
-                width: "200px",
+                width: "250px",
                 height: "60px",
                 fontSize: "20px",
               }}
             >
-              혼합
+              위험도 대비 수익률
             </Button>
+            <h4>위험도 대비 수익률이 <br/>가장 높은 포트폴리오 추천</h4>
           </div>
         </div>
       </Modal>
@@ -158,18 +161,7 @@ export default function Portfolio() {
         }}
       >
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-         
-          <Divider
-            sx={{
-              backgroundColor: "red",
-              height: "100%",
-              marginTop: 14,
-              width: "1200px",
-              marginLeft: "140px",
-              borderWidth: "2px", // 굵기를 2px로 설정
-              borderStyle: "solid",
-            }}
-          />
+
         </ul>
       </div>
       <div
